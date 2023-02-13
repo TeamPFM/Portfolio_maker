@@ -11,7 +11,7 @@ export class UsersEntity extends CommonEntity {
 
   @IsString()
   @IsNotEmpty({ message: '이름을 작성해주세요.' })
-  @Column({ type: 'varchar', unique: true, nullable: false })
+  @Column({ type: 'varchar', unique: false, nullable: false })
   name: string;
 
   @Column({ type: 'varchar', nullable: false })
