@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserEntity } from './users/users.entitiy';
+import { UsersEntity } from './users/users.entitiy';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -18,7 +18,7 @@ import { UsersModule } from './users/users.module';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: 'myfolio',
-      entities: [UserEntity],
+      entities: [UsersEntity],
       synchronize: true,
     }),
     UsersModule,
