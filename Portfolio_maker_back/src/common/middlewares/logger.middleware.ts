@@ -1,20 +1,20 @@
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
-  private logger = new Logger('HTTP');
-  // nest는 로깅을 할때 logger하는 클래스를 사용한다.
-  // HTTP 프로토콜에 관한 로거를 사용할 수 있게 된다.
+  private readonly logger = new Logger();
 
   use(req: Request, res: Response, next: NextFunction) {
-    // app.use처럼 사용한다.
-    // req, res, next 타이핑 해준다.
+    // 요청 객체로부터 ip, http method, url, user agent를 받는다.
+    const { ip, method, originalUrl } = req;
+    const userAgent = req.get('user-agent');
+
+    // 응답이 끝나는 이벤트 발생시 로그를 찍는다.
     res.on('finish', () => {
-      // response가 끝났을때 콜백.
+      const { statusCode } = res;
       this.logger.log(
-        `${req.ip} ${req.method} ${res.statusCode}`,
-        req.originalUrl,
+        `${method} ${originalUrl} ${statusCode} ${ip} ${userAgent}`,
       );
     });
 
