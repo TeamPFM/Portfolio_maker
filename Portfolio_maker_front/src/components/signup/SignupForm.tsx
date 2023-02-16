@@ -24,7 +24,7 @@ const SignupForm = () => {
   const [validPassed, setValidPassed] = useState<boolean>(false);
 
   return (
-    <section className="flex flex-col w-[60vw] gap-8 items-center justify-center bg-white py-4 px-6 border rounded-xl shadow-md">
+    <section className="flex flex-col w-[80vw] gap-8 items-center justify-center bg-white py-4 px-6 border rounded-xl shadow-md">
       <div className="w-full text-left text-2xl">
         {/* <SignHeaderItem /> */}
         <h1 className="text-2xl py-2 font-bold">회원가입</h1>
@@ -63,6 +63,7 @@ const SignupForm = () => {
               className={`border w-full leading-8 rounded-sm valid:border-success`}
               type={canSeePW ? "text" : "password"}
               name="password"
+              autoComplete="off"
               onChange={(evt) => {
                 // Check if 한글입력 등 when type="text"
                 const passwordExp = /[^A-Za-z\d$@$!%*#?&]/g;
@@ -100,6 +101,7 @@ const SignupForm = () => {
               className={`border w-full leading-8 rounded-sm valid:border-success`}
               type={canSeeFirmPW ? "text" : "password"}
               name="password"
+              autoComplete="off"
               onChange={(evt) => {
                 // Check if 한글입력 등 when type="text"
                 const passwordExp = /[^A-Za-z\d$@$!%*#?&]/g;
@@ -166,7 +168,7 @@ const SignupForm = () => {
               token.setToken("token", data.token);
 
               // FIXME 성공하면 주석풀고 홈으로
-              // navigate(HOME, { replace: true });
+              navigate(HOME, { replace: true });
             })
             .catch(console.error);
         }}

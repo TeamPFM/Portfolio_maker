@@ -23,7 +23,7 @@ const LoginForm = () => {
   const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <section className="w-[60vw] flex flex-col gap-8 items-center justify-center bg-white py-20 px-8 border rounded-xl shadow-md">
+    <section className="w-[80vw] flex flex-col gap-8 items-center justify-center bg-white py-20 px-8 border rounded-xl shadow-md">
       <div className="flex flex-col gap-2 text-4xl px-12 py-6 rounded-full font-bold">
         <h1 className="">PortFolio Makers</h1>
       </div>
@@ -54,6 +54,7 @@ const LoginForm = () => {
                 type={canSeePW ? "text" : "password"}
                 name="password"
                 placeholder="비밀번호"
+                autoComplete="off"
                 onChange={(evt) => {
                   // Check if 한글입력 등 when type="text"
                   const passwordExp = /[^A-Za-z\d$@$!%*#?&]/g;
@@ -82,7 +83,7 @@ const LoginForm = () => {
         <div className="w-full flex flex-col gap-4 text-2xl font-bold">
           <MainButton
             className="w-full !py-4"
-            disabled={!validPassed}
+            disabled={validPassed}
             onClick={() => {
               if (validPassed) {
                 // FIXME valid유효성 작업
