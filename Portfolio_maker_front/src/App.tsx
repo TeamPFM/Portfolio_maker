@@ -7,16 +7,16 @@ function App() {
   const { HOME, LOGIN, SIGNUP } = Path;
 
   return (
-    <div className="App">
+    <div className="w-screen h-screen bg-main bg-opacity-40">
       <Routes>
-        <Route path={HOME} element={<div>잘됩니다dd</div>} />
-        {/* 기훈 */}
+        <Route path={HOME} element={<div>잘됩니다</div>} />
+        {/* 노기훈 */}
         <Route path={LOGIN} element={<LoginPage />} />
         <Route path={SIGNUP} element={<SignupPage />} />
-        {/* 동현 */}
+        {/* 이동현 */}
         <Route path="login" element={<div></div>} />
         <Route path="login" element={<div></div>} />
-        {/*  */}
+        {/* 권숭성*/}
         <Route path="login" element={<div></div>} />
         <Route path="login" element={<div></div>} />
 
