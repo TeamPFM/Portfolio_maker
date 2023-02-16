@@ -1,17 +1,17 @@
-import { useState, useRef, MouseEvent, KeyboardEvent } from 'react';
+import React, { useState, useEffect,useCallback, useRef, MouseEvent, KeyboardEvent } from 'react';
 import { AiFillPlusSquare } from 'react-icons/ai';
 
 const SelectedSkills = () => {
   const [skills, setSkills] = useState<string[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
-
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [input, setInput] = useState(0)
   const onClickSkills = (e: MouseEvent<HTMLElement> | KeyboardEvent<HTMLElement>) => {
-    if (inputRef.current) {
-      if (inputRef.current.value !== '') {
-        setSkills([...skills, inputRef.current.value]);
-        inputRef.current.value = '';
-      }
+    if (!inputRef.current) {
+      return;
     }
+    
+    setSkills([...skills, inputRef.current.value]);
+    inputRef.current.value = '';
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -21,8 +21,15 @@ const SelectedSkills = () => {
     }
   };
 
+  useEffect(useCallback(() => {
+    setInput(prev => prev + 1);
+    // 애를 가르키는 메모리가 재생성이 안됨 계속 애만 가르킴
+  }, []), []);
+
+
   return (
     <>
+      <div>{input}</div>
       <p className={`relative pb-2 font-bold after:content-['*'] after:ml-1.5 after:text-red-400`}>
         사용된 기술
         <button
@@ -52,5 +59,4 @@ const SelectedSkills = () => {
     </>
   );
 };
-
-export default SelectedSkills;
+export default React.memo(SelectedSkills);
