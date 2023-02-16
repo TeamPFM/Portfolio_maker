@@ -144,7 +144,7 @@ const SignupForm = () => {
           !validPassed ? "bg-default" : ""
         }`}
         onClick={() => {
-          //
+          navigate(HOME, { replace: true });
         }}
       >
         가입신청
