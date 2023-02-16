@@ -6,11 +6,11 @@ import Path from "@/utils/routes/Path";
 
 const Header = () => {
     const { HOME, LOGIN, SIGNUP } = Path;
-    const [ isLogin, setIsLogin ] = useState(false);
+    const [ isLogin, setIsLogin ] = useState<Boolean>(false);
 
 
     return (
-        <header className="h-20 w-full border-b-2 flex align-middle justify-between px-5 drop-shadow fixed left-0 top-0 z-10 bg-white">
+        <header className="fixed left-0 top-0 w-full h-20 flex align-middle justify-between px-5 drop-shadow z-10 bg-white border-b-2">
             <H1 className="logo">
                 <Link to={HOME}>Portfolio Maker</Link>
             </H1>

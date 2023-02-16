@@ -8,7 +8,7 @@ const HomePage = () => {
       <Header />
 
       <motion.main
-        className="h-[calc(100vh_-_80px)] mt-20 relative"
+        className="h-[calc(100vh_-_80px)] pt-20 relative"
         animate={{
           background: [
             "rgb(129 140 248)",
