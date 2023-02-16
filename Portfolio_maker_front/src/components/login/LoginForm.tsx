@@ -8,12 +8,17 @@ import {
 } from "react-icons/ai";
 import MainButton, { DarkButton } from "@/styles/ui-components/styled-button";
 
+import token from "@/libs/token";
+import api from "@/libs/axios/api";
+import AuthResponse, { LoginRequest } from "@/models/auth";
+
 const LoginForm = () => {
-  const { SIGNUP, HOME } = Path;
   const navigate = useNavigate();
+  const { SIGNUP, HOME } = Path;
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
-
+  // 가입신청 공백체크
+  const [validPassed, setValidPassed] = useState<boolean>(false);
   const userEmailRef = useRef<HTMLInputElement | null>(null);
   const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
 
@@ -77,8 +82,27 @@ const LoginForm = () => {
         <div className="w-full flex flex-col gap-4 text-2xl font-bold">
           <MainButton
             className="w-full !py-4"
+            disabled={!validPassed}
             onClick={() => {
-              //  ...code
+              if (validPassed) {
+                // FIXME valid유효성 작업
+                console.log("값이 비워져있음");
+              }
+              const reqData: LoginRequest = {
+                email: userEmailRef.current?.value ?? "",
+                password: userPasswordFormRef.current?.value ?? "",
+              };
+
+              api
+                .post<AuthResponse>("/api/users", reqData)
+                .then(({ data }) => {
+                  console.log(data);
+                  token.setToken("token", data.token);
+
+                  // FIXME 성공하면 주석풀고 홈으로
+                  navigate(HOME, { replace: true });
+                })
+                .catch(console.error);
             }}
           >
             로그인
@@ -94,15 +118,6 @@ const LoginForm = () => {
           </DarkButton>
         </div>
       </section>
-      {/* <section className="w-full flex flex-col gap-6 items-center justify-center px-16">
-        <div className="text-xl">SNS 계정 로그인</div>
-        <div className="w-full border-b" />
-        <div className="flex flex-row gap-10 text-5xl">
-          <AiFillTrademarkCircle />
-          <AiFillTrademarkCircle />
-          <AiFillTrademarkCircle />
-        </div>
-      </section> */}
     </section>
   );
 };
