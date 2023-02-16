@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path={HOME} element={<div>잘됩니다</div>} />
+        <Route path={HOME} element={<div>잘됩니다dd</div>} />
         {/* 기훈 */}
         <Route path={LOGIN} element={<LoginPage />} />
         <Route path={SIGNUP} element={<SignupPage />} />
