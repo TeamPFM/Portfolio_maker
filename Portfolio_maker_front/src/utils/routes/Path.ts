@@ -5,7 +5,7 @@ const Path = {
   SIGNUP: "/signup",
 
   // 동현
-  MY: "/my",
+  WRITE: "/write",
 
   // 순성
 };
