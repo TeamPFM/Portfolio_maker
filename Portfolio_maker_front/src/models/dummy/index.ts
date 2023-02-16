@@ -1,5 +1,5 @@
-export default interface PortfolioUser {
-  id?: number;
-  userName?: string;
+export default interface LoginRequest {
+  email?: number;
+  name?: string;
   password?: string;
 }
