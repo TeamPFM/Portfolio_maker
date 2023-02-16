@@ -1,4 +1,4 @@
-import DummyDto from "@/models/dummy";
+import DummyDto from "@/models/auth";
 
 const dummyInfo: DummyDto = {
   id: 0,
