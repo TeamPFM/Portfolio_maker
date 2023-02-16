@@ -1,10 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/login";
 import SignupPage from "./pages/signup";
+import WritePage from "./pages/write";
 import Path from "./utils/routes/Path";
 
 function App() {
-  const { HOME, LOGIN, SIGNUP } = Path;
+  const { HOME, LOGIN, SIGNUP, WRITE } = Path;
 
   return (
     <div className="App">
@@ -14,8 +15,7 @@ function App() {
         <Route path={LOGIN} element={<LoginPage />} />
         <Route path={SIGNUP} element={<SignupPage />} />
         {/* 동현 */}
-        <Route path="login" element={<div></div>} />
-        <Route path="login" element={<div></div>} />
+        <Route path={WRITE} element={<WritePage />} />
         {/*  */}
         <Route path="login" element={<div></div>} />
         <Route path="login" element={<div></div>} />
