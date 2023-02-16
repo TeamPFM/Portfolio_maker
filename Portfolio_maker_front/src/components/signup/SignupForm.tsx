@@ -1,3 +1,7 @@
+import api from "@/libs/axios/api";
+import token from "@/libs/token";
+import AuthResponse from "@/models/auth";
+import LoginRequest, { AuthRequest } from "@/models/auth";
 import MainButton from "@/styles/ui-components/styled-button";
 import Path from "@utils/routes/Path";
 import { useCallback, useRef, useState } from "react";
@@ -17,7 +21,7 @@ const SignupForm = () => {
   const [canSeeFirmPW, setCanSeeFirmPW] = useState<boolean>(false);
 
   // 가입신청 공백체크
-  const [validPassed, setValidPassed] = useState<boolean>(true);
+  const [validPassed, setValidPassed] = useState<boolean>(false);
 
   return (
     <section className="flex flex-col w-[60vw] gap-8 items-center justify-center bg-white py-4 px-6 border rounded-xl shadow-md">
@@ -143,8 +147,28 @@ const SignupForm = () => {
         className={`w-full !py-4 !rounded-lg font-bold text-3xl ${
           !validPassed ? "bg-default" : ""
         }`}
+        disabled={validPassed}
         onClick={() => {
-          navigate(HOME, { replace: true });
+          if (validPassed) {
+            console.log("값이 비워져있음");
+          }
+
+          const reqData: AuthRequest = {
+            email: userEmailRef.current?.value ?? "",
+            name: userFullnameRef.current?.value ?? "",
+            password: userPasswordFirmFormRef.current?.value ?? "",
+          };
+
+          api
+            .post<AuthResponse>("/api/users", reqData)
+            .then(({ data }) => {
+              console.log(data);
+              token.setToken("token", data.token);
+
+              // FIXME 성공하면 주석풀고 홈으로
+              // navigate(HOME, { replace: true });
+            })
+            .catch(console.error);
         }}
       >
         가입신청
