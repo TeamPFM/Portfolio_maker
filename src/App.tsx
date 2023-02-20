@@ -1,32 +1,43 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/login";
-import SignupPage from "./pages/signup";
-import WritePage from "./pages/write";
-import HomePage from "./pages/home";
+import { useLocation } from "react-router-dom";
 import Path from "./utils/routes/Path";
+import { useLayoutEffect, useState } from "react";
+import GNB from "./components/common/GNB";
+import ProtectedRoutes from "./components/routes/ProtectedRoutes";
+import UnauthenticatedRoutes from "./components/routes/UnauthenticatedRoutes";
 
 function App() {
+  const location = useLocation();
   const { HOME, LOGIN, SIGNUP, WRITE } = Path;
+
+  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [hasNav, setHasNav] = useState<boolean>(false);
+  const [RoutesComponent, setRoutesComponent] =
+    useState<React.ReactElement | null>(null);
+
+  useLayoutEffect(() => {
+    // FIXME 토큰받으면 토큰으로 처리
+    isAuth && setRoutesComponent(<ProtectedRoutes />);
+    !isAuth && setRoutesComponent(<UnauthenticatedRoutes />);
+  }, [isAuth]);
+
+  useLayoutEffect(() => {
+    const pathname =
+      location.pathname.endsWith("/") && location.pathname.length > 1
+        ? location.pathname.slice(0, -1)
+        : location.pathname;
+
+    const hasNav = [HOME, LOGIN, SIGNUP, WRITE].includes(pathname);
+
+    setHasNav(hasNav);
+  }, []);
 
   return (
     <div className="w-screen h-screen bg-main bg-opacity-40">
-      <Routes>
-        <Route path={HOME} element={<HomePage />} />
-        {/* 기훈 */}
-        <Route path={LOGIN} element={<LoginPage />} />
-        <Route path={SIGNUP} element={<SignupPage />} />
-        {/* 동현 */}
-        <Route path={WRITE} element={<WritePage />} />
-        {/*  */}
-        {/* 이동현 */}
-        <Route path="login" element={<div></div>} />
-        <Route path="login" element={<div></div>} />
-        {/* 권숭성*/}
-        <Route path="login" element={<div></div>} />
-        <Route path="login" element={<div></div>} />
-
-        <Route path="*" element={<Navigate replace to="/" />} />
-      </Routes>
+      <header>{hasNav && <GNB />}</header>
+      <main className="w-full h-full pt-20">
+        <div className={`w-full h-full`}>{RoutesComponent}</div>
+      </main>
+      {/* <footer></footer> */}
     </div>
   );
 }
