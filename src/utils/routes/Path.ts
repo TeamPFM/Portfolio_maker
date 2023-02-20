@@ -1,13 +1,9 @@
 const Path = {
   HOME: "/",
-  // 기훈
   LOGIN: "/login",
   SIGNUP: "/signup",
-
-  // 동현
+  MYINFO: "/myinfo",
   WRITE: "/write",
-
-  // 순성
 };
 
 Object.freeze(Path);
