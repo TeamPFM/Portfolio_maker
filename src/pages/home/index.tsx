@@ -1,14 +1,10 @@
 import { motion } from "framer-motion";
 
-import Header from "../../components/Header/Header";
-
 const HomePage = () => {
   return (
     <>
-      <Header />
-
       <motion.main
-        className="h-[calc(100vh_-_80px)] pt-20 relative"
+        className="h-[calc(100vh_-_80px)] relative"
         animate={{
           background: [
             "rgb(129 140 248)",
