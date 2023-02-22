@@ -1,6 +1,14 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import MainButton from "@/styles/ui-components/styled-button";
+
+import Path from "@/utils/routes/Path";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+  const { LOGIN } = Path;
+
   return (
     <div className="overflow-hidden">
       <motion.main
@@ -70,9 +78,19 @@ const HomePage = () => {
           />
         </motion.div>
 
-        <h2 className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl py-10 font-semibold text-gray-800 text-center max-w-lg bg-indigo-400/25 p-5 rounded-lg">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium corporis eaque ducimus. Optio harum nulla aliquid impedit quos. Possimus doloribus rem nisi similique officiis ex unde quos perferendis ipsa iure.
-        </h2>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:max-w-lg bg-indigo-400/25 p-5 rounded-lg">
+          <h2 className="text-3xl py-20 font-semibold text-gray-800 text-center">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+            corporis eaque ducimus.
+          </h2>
+
+          <MainButton
+            className="w-full"
+            onClick={() => navigate(LOGIN, { replace: true })}
+          >
+            포트폴리오 만들기
+          </MainButton>
+        </div>
       </motion.main>
     </div>
   );
