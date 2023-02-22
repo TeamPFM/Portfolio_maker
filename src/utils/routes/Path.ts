@@ -4,6 +4,7 @@ const Path = {
   SIGNUP: "/signup",
   MYINFO: "/myinfo",
   WRITE: "/write",
+  RESUME: "/resume",
 };
 
 Object.freeze(Path);
