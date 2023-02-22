@@ -1,5 +1,4 @@
-import React from 'react';
-import WriteForm from '@/components/upload/writeForm';
+import WriteForm from '@/components/write/WriteForm';
 
 const WritePage = () => {
   return <WriteForm />;
