@@ -7,9 +7,9 @@ import UnauthenticatedRoutes from "./components/routes/UnauthenticatedRoutes";
 
 function App() {
   const location = useLocation();
-  const { HOME, LOGIN, SIGNUP, WRITE } = Path;
+  const { HOME, LOGIN, SIGNUP, WRITE, MYINFO } = Path;
 
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth, setIsAuth] = useState<boolean>(true);
   const [hasNav, setHasNav] = useState<boolean>(false);
   const [RoutesComponent, setRoutesComponent] =
     useState<React.ReactElement | null>(null);
@@ -26,7 +26,7 @@ function App() {
         ? location.pathname.slice(0, -1)
         : location.pathname;
 
-    const hasNav = [HOME, LOGIN, SIGNUP, WRITE].includes(pathname);
+    const hasNav = [HOME, LOGIN, SIGNUP, WRITE, MYINFO].includes(pathname);
 
     setHasNav(hasNav);
   }, []);

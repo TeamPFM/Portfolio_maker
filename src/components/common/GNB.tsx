@@ -1,12 +1,43 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { FaUserCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import H1 from "@/styles/ui-components/H1";
 import Path from "@/utils/routes/Path";
 
 const GNB = () => {
-  const { HOME, LOGIN, SIGNUP } = Path;
-  const [isLogin, setIsLogin] = useState<Boolean>(false);
+  const navigate = useNavigate();
+
+  const { HOME, LOGIN, MYINFO } = Path;
+  const [isLogin, setIsLogin] = useState<Boolean>(true);
+  const [isToggleMenu, setIsToggleMenu] = useState<Boolean>(false);
+
+  const handleToggleMenu = () => {
+    setIsToggleMenu(!isToggleMenu);
+  };
+
+  const toggleMenuAnimate = {
+    enter: {
+      opacity: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.3,
+      },
+      display: "flex",
+    },
+    exit: {
+      opacity: 0,
+      rotateX: -15,
+      transition: {
+        duration: 0.3,
+      },
+      transitionEnd: {
+        display: "none",
+      },
+    },
+  };
 
   return (
     <div className="fixed left-0 top-0 w-full h-20 flex align-middle justify-between px-5 drop-shadow z-10 bg-white border-b-2">
@@ -15,41 +46,47 @@ const GNB = () => {
       </H1>
 
       <nav>
-        {isLogin ? (
-          <ul className="flex space-x-4 items-center h-full">
-            <li>
-              <Link to={HOME} className="hover:text-indigo-300">
-                포트폴리오
+        <ul className="flex space-x-4 items-center h-full">
+          <li>
+            <Link to={HOME} className="hover:text-main transition-all">
+              게시판
+            </Link>
+          </li>
+          <li className="relative">
+            <button
+              className="flex justify-center items-center rounded-full bg-main border-2 border-main opacity-70 hover:opacity-100 transition-all"
+              onClick={() => {
+                isLogin
+                  ? setIsToggleMenu(!isToggleMenu)
+                  : navigate(LOGIN, { replace: true });
+              }}
+            >
+              <FaUserCircle className="text-3xl text-white" />
+            </button>
+
+            <motion.div
+              className={`flex flex-col absolute -bottom-[80px] right-[35px] w-[120px] bg-indigo-100 text-gray-500 rounded-lg rounded-tr-none overflow-hidden transition-all`}
+              initial="exit"
+              animate={isToggleMenu ? "enter" : "exit"}
+              variants={toggleMenuAnimate}
+            >
+              <Link
+                to={MYINFO}
+                className="px-3 py-2 border-b-[1px] border-white hover:text-white hover:bg-main transition-all"
+                onClick={() => setIsToggleMenu(!isToggleMenu)}
+              >
+                내 정보
               </Link>
-            </li>
-            <li>
-              <Link to={HOME}>게시판</Link>
-            </li>
-            <li>
-              <Link to={LOGIN}>로그아웃</Link>
-            </li>
-            <li>
-              <Link to={HOME}>내 정보</Link>
-            </li>
-          </ul>
-        ) : (
-          <ul className="flex space-x-4 items-center h-full">
-            <li>
-              <Link to={HOME} className="hover:text-indigo-300 transition-all">
-                포트폴리오
+              <Link
+                to={HOME}
+                className="px-3 py-2 hover:text-white hover:bg-main transition-all"
+                onClick={() => setIsToggleMenu(!isToggleMenu)}
+              >
+                로그아웃
               </Link>
-            </li>
-            <li>
-              <Link to={HOME}>게시판</Link>
-            </li>
-            <li>
-              <Link to={LOGIN}>로그인</Link>
-            </li>
-            <li>
-              <Link to={SIGNUP}>회원가입</Link>
-            </li>
-          </ul>
-        )}
+            </motion.div>
+          </li>
+        </ul>
       </nav>
     </div>
   );
