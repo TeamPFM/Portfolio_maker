@@ -5,11 +5,19 @@ interface IProps {
   inputType: string;
   inputName: string;
   className: string;
-  essentialMark: string;
+  essentialMark?: string;
+  required?: boolean;
 }
 
 const RowForm = (props: IProps) => {
-  const { title, inputType, inputName, className, essentialMark } = props;
+  const {
+    title,
+    inputType,
+    inputName,
+    className,
+    essentialMark = "",
+    required,
+  } = props;
 
   return (
     <div className={`w-full flex items-center ${className}`}>
@@ -24,6 +32,7 @@ const RowForm = (props: IProps) => {
         type={inputType}
         name={inputName}
         id={inputName}
+        required={required}
       />
     </div>
   );
