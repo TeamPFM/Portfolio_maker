@@ -30,7 +30,7 @@ const SignupForm = () => {
         <h1 className="text-2xl py-2 font-bold">회원가입</h1>
         <div className="w-full border-b" />
       </div>
-      <section className="w-full flex flex-col gap-2">
+      <form className="w-full flex flex-col gap-2">
         {/* 아이디 */}
         <fieldset className="w-full flex flex-col gap-1">
           <p
@@ -105,8 +105,8 @@ const SignupForm = () => {
               onChange={(evt) => {
                 // Check if 한글입력 등 when type="text"
                 const passwordExp = /[^A-Za-z\d$@$!%*#?&]/g;
-                const newRegisterFirmPassword = evt.target.value;
-                newRegisterFirmPassword.replace(passwordExp, "");
+                const RegisterFirmPassword = evt.target.value;
+                RegisterFirmPassword.replace(passwordExp, "");
               }}
               pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$"
               required
@@ -144,7 +144,7 @@ const SignupForm = () => {
             required
           />
         </fieldset>
-      </section>
+      </form>
       <MainButton
         className={`w-full !py-4 !rounded-lg font-bold text-3xl ${
           !validPassed ? "bg-default" : ""
@@ -162,13 +162,13 @@ const SignupForm = () => {
           };
 
           api
-            .post<AuthResponse>("/api/users", reqData)
+            .post<AuthResponse>("/api/users/register", reqData)
             .then(({ data }) => {
-              console.log(data);
+              alert(data);
               token.setToken("token", data.token);
 
               // FIXME 성공하면 주석풀고 홈으로
-              navigate(HOME, { replace: true });
+              // navigate(HOME, { replace: true });
             })
             .catch(console.error);
         }}
