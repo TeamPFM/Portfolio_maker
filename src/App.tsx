@@ -16,8 +16,8 @@ function App() {
 
   useLayoutEffect(() => {
     // FIXME 토큰받으면 토큰으로 처리
-    isAuth && setRoutesComponent(<ProtectedRoutes />);
-    !isAuth && setRoutesComponent(<UnauthenticatedRoutes />);
+    !isAuth && setRoutesComponent(<ProtectedRoutes />);
+    isAuth && setRoutesComponent(<UnauthenticatedRoutes />);
   }, [isAuth]);
 
   useLayoutEffect(() => {

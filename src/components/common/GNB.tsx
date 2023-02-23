@@ -78,6 +78,13 @@ const GNB = () => {
                 내 정보
               </Link>
               <Link
+                to={LOGIN}
+                className="px-3 py-2 border-b-[1px] border-white hover:text-white hover:bg-main transition-all"
+                onClick={() => setIsToggleMenu(!isToggleMenu)}
+              >
+                로그인(임시)
+              </Link>
+              <Link
                 to={HOME}
                 className="px-3 py-2 hover:text-white hover:bg-main transition-all"
                 onClick={() => setIsToggleMenu(!isToggleMenu)}
