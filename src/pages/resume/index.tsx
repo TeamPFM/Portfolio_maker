@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AboutMeInfo from "@/components/aboutme/ProfileInfo";
 import ProjectInfo from "@/components/projects/ProjectInfo";
 import ProjectResponse from "@/models/projects";
 import usersResponse from "@/models/users";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BasicButton } from "@/styles/ui-components/styled-button";
+import AboutMe from "@/components/resume/AboutMe";
+import ProfileMe from "@/components/resume/ProfileMe";
 const ResumePage = () => {
   const [projects, setProjects] = useState<ProjectResponse[]>([]);
   const [users, setUsers] = useState<usersResponse | null>(null);
@@ -39,22 +40,11 @@ const ResumePage = () => {
                 내정보 관리
               </span>
             </div>
-            <AboutMeInfo users={users} />
+            <ProfileMe users={users} />
           </section>
           {/* about_me */}
           <section>
-            <div>
-              <div className="border-l-4 border-l-slate-400 border-b border-b-gray-200 px-3 py-2">
-                <span className="text-xl font-semibold">About me</span>
-              </div>
-              <div className="">
-                <div className="pt-8">
-                  <div className="flex justify-center items-center relative py-8 px-8 w-full h-40 bg-white shadow-lg rounded-lg">
-                    <p className="text-lg text-coolGray-500 font-bold ">소개글을 작성해주세요!</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <AboutMe about={users?.about} />
           </section>
           {/* projects */}
           <section className="projects relative">
