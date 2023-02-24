@@ -1,6 +1,6 @@
 export default interface ProjectResponse {
     id: string,
-    projectName: string,
-    desc: string,
+    name: string,
+    description: string,
     link: string
   }
