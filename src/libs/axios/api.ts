@@ -15,7 +15,7 @@ api.interceptors.request.use((config: any) => {
   return {
     ...config,
     headers: {
-      Authorization: `login ${accessToken}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   };
 });
