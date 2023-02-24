@@ -4,21 +4,23 @@ import { useLayoutEffect, useState } from "react";
 import GNB from "./components/common/GNB";
 import ProtectedRoutes from "./components/routes/ProtectedRoutes";
 import UnauthenticatedRoutes from "./components/routes/UnauthenticatedRoutes";
+import token from "./libs/token";
 
 function App() {
   const location = useLocation();
   const { HOME, LOGIN, SIGNUP, WRITE, MYINFO, RESUME } = Path;
 
-  const [isAuth, setIsAuth] = useState<boolean>(true);
   const [hasNav, setHasNav] = useState<boolean>(false);
   const [RoutesComponent, setRoutesComponent] =
     useState<React.ReactElement | null>(null);
 
   useLayoutEffect(() => {
+    const gettoken = token.getToken("token");
+    console.log(gettoken);
     // FIXME 토큰받으면 토큰으로 처리
-    isAuth && setRoutesComponent(<ProtectedRoutes />);
-    !isAuth && setRoutesComponent(<UnauthenticatedRoutes />);
-  }, [isAuth]);
+    gettoken && setRoutesComponent(<ProtectedRoutes />);
+    !gettoken && setRoutesComponent(<UnauthenticatedRoutes />);
+  }, []);
 
   useLayoutEffect(() => {
     const pathname =
