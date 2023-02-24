@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 const SignupForm = () => {
   const navigate = useNavigate();
 
-  const { HOME } = Path;
+  const { HOME, LOGIN } = Path;
 
   const userEmailRef = useRef<HTMLInputElement | null>(null);
   const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
@@ -44,8 +44,10 @@ const SignupForm = () => {
             name="email"
             ref={userEmailRef}
             onChange={(evt) => {
+              const emailExp =
+                /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
               const newregisterEmail = evt.target.value;
-              console.log(newregisterEmail);
+              newregisterEmail.replace(emailExp, "");
             }}
             required
           />
@@ -151,9 +153,10 @@ const SignupForm = () => {
         }`}
         disabled={validPassed}
         onClick={() => {
-          if (validPassed) {
-            console.log("값이 비워져있음");
-          }
+          // FIXME 유효성 처리
+          // if (validPassed) {
+          //   console.log("값이 비워져있음");
+          // }
 
           const reqData: AuthRequest = {
             email: userEmailRef.current?.value ?? "",
@@ -162,13 +165,10 @@ const SignupForm = () => {
           };
 
           api
-            .post<AuthResponse>("/api/users/register", reqData)
+            .post<AuthResponse>("/api/users", reqData)
             .then(({ data }) => {
-              alert(data);
               token.setToken("token", data.token);
-
-              // FIXME 성공하면 주석풀고 홈으로
-              // navigate(HOME, { replace: true });
+              navigate(LOGIN, { replace: true });
             })
             .catch(console.error);
         }}

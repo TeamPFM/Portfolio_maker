@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import H1 from "@/styles/ui-components/H1";
 import Path from "@/utils/routes/Path";
+import token from "@/libs/token";
 
 const GNB = () => {
   const navigate = useNavigate();
@@ -87,7 +88,12 @@ const GNB = () => {
               <Link
                 to={HOME}
                 className="px-3 py-2 hover:text-white hover:bg-main transition-all"
-                onClick={() => setIsToggleMenu(!isToggleMenu)}
+                onClick={() => {
+                  const removeToken = token.removeToken("token");
+                  //FIXME 차후 콘솔삭제(확인용)
+                  const getToken = token.getToken("token");
+                  console.log("GNB 토큰여부", getToken);
+                }}
               >
                 로그아웃
               </Link>

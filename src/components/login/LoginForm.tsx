@@ -86,23 +86,20 @@ const LoginForm = () => {
             className="w-full !py-4"
             disabled={validPassed}
             onClick={(evt) => {
-              if (!validPassed) {
-                evt.preventDefault();
-                alert("이메일과 비밀번호를 확인해주세요!");
-              }
+              // FIXME 유효성 체크
+              // if (!validPassed) {
+              //   evt.preventDefault();
+              //   console.log(validPassed);
+              // }
               const reqData: LoginRequest = {
                 email: userEmailRef.current?.value ?? "",
                 password: userPasswordFormRef.current?.value ?? "",
               };
 
               api
-                .post<AuthResponse>("/api/users", reqData)
+                .post<AuthResponse>("api/users/login", reqData)
                 .then(({ data }) => {
-                  alert("탔나?");
-                  console.log(data);
                   token.setToken("token", data.token);
-
-                  // FIXME 성공하면 주석풀고 홈으로
                   navigate(HOME, { replace: true });
                 })
                 .catch(console.error);
