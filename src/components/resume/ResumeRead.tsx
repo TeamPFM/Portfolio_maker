@@ -7,8 +7,7 @@ const ResumeRead = () => {
     <div>
       <section></section>
       <div>
-        <DefaultButton></DefaultButton>
-        <MainButton></MainButton>
+        포트폴리오
       </div>
     </div>
   );
