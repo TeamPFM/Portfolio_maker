@@ -14,13 +14,15 @@ function App() {
   const [RoutesComponent, setRoutesComponent] =
     useState<React.ReactElement | null>(null);
 
+  const gettoken = token.getToken("token");
+
   useLayoutEffect(() => {
     const gettoken = token.getToken("token");
     console.log(gettoken);
     // FIXME 토큰받으면 토큰으로 처리
     gettoken && setRoutesComponent(<ProtectedRoutes />);
     !gettoken && setRoutesComponent(<UnauthenticatedRoutes />);
-  }, []);
+  }, [gettoken]);
 
   useLayoutEffect(() => {
     const pathname =
