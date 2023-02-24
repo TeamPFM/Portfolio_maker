@@ -14,7 +14,7 @@ const ProjectItem = ({ project }: IProps) => {
   const { id, projectName, desc, link } = project;
   const navigate = useNavigate();
 
-  const onRemoveProject = (projectId: number) => {
+  const onRemoveProject = (projectId: string) => {
     const deleteFetchProjectData = () => {
       api.delete<ProjectResponse>(`http://localhost:5000/project/${projectId}`);
       navigate("/", { replace: true });
@@ -27,7 +27,7 @@ const ProjectItem = ({ project }: IProps) => {
   const onEditProject = () => {};
 
   return (
-    <div key={id} className="p-item relative py-4 px-8 w-[573px] bg-white shadow-lg rounded-lg">
+    <div key={id} className="p-item relative py-4 px-8 w-full bg-white shadow-lg rounded-lg">
       <div className="flex flex-col w-[95%] gap-4">
         <div className="absolute top-[1rem] right-2">
           <DrowDownMenu

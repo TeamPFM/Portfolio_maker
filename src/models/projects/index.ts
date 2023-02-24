@@ -1,5 +1,5 @@
 export default interface ProjectResponse {
-    id: number,
+    id: string,
     projectName: string,
     desc: string,
     link: string

@@ -1,4 +1,4 @@
-export default interface ProjectResponse {
+export default interface usersResponse {
   id: string;
   email: string;
   name: string;
