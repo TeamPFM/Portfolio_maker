@@ -1,13 +1,12 @@
-import { useState } from "react";
+import usersResponse from "@/models/users";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import usersResponse from "@/models/users";
 
 interface IProps {
   users: usersResponse | null;
 }
 
-const AboutMeInfo = ({ users }: IProps) => {
+const ProfileMe = ({ users }: IProps) => {
   return (
     <>
       <div>
@@ -66,4 +65,4 @@ const AboutMeInfo = ({ users }: IProps) => {
   );
 };
 
-export default AboutMeInfo;
+export default ProfileMe;
