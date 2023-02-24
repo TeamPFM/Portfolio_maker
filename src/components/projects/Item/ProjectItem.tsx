@@ -8,10 +8,8 @@ interface IProps {
   project: ProjectResponse;
 }
 
-const TitleStyle = "text-lg font-semibold";
-
 const ProjectItem = ({ project }: IProps) => {
-  const { id, projectName, desc, link } = project;
+  const { id, name, description, link } = project;
   const navigate = useNavigate();
 
   const onRemoveProject = (projectId: string) => {
@@ -28,8 +26,8 @@ const ProjectItem = ({ project }: IProps) => {
 
   return (
     <div key={id} className="p-item relative py-4 px-8 w-full bg-white shadow-lg rounded-lg">
-      <div className="flex flex-col w-[95%] gap-4">
-        <div className="absolute top-[1rem] right-2">
+      <div>
+        <div className="absolute top-4 right-2">
           <DrowDownMenu
             key={id}
             id={id}
@@ -37,21 +35,21 @@ const ProjectItem = ({ project }: IProps) => {
             onEditProject={onEditProject}
           />
         </div>
-        <div>
-          <span className={`${TitleStyle}`}>{projectName}</span>
+        <div className="py-2">
+          <span className="text-[22px] font-bold">{name}</span>
         </div>
-        <div>
+        <div className="py-2">
           <div>
-            <span className={`${TitleStyle}`}>설명</span>
+            <span className="text-[20px] font-semibold">설명</span>
           </div>
-          <span>{desc}</span>
+          <span className="text-[18px]">{description}</span>
         </div>
-        <div>
+        <div className="py-2">
           <div>
-            <span className={`${TitleStyle}`}>관련 링크</span>
+            <span className="text-[20px] font-semibold">관련 링크</span>
           </div>
           <Link to={link} target="_blank">
-            {link}
+            <span className="text-[18px]">{link}</span>
           </Link>
         </div>
       </div>
