@@ -1,50 +1,37 @@
+import {useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
-import ProjectInfo from "@/components/projects/ProjectInfo";
-import ProjectResponse from "@/models/projects";
-import UsersResponse from "@/models/users";
 import { AiOutlinePlus } from "react-icons/ai";
-import { BasicButton } from "@/styles/ui-components/styled-button";
+import ProjectInfo from "@/components/projects/ProjectInfo";
 import AboutMe from "@/components/resume/AboutMe";
 import ProfileMe from "@/components/resume/ProfileMe";
-import api from "@/libs/axios/api";
-import { useQuery } from "@tanstack/react-query";
-
-const getFetchUsers = async () => {
-  const { data } = await api.get<UsersResponse>("/api/users/info");
-  return data;
-};
-
-const getFetchProject = async (userId: number) => {
-  // [Request] /api/projects?user-id=userId
-  const { data } = await api.get<{ projects: ProjectResponse[] }>(
-    `/api/projects?user-id=${userId}`
-  );
-  console.log(data);
-  return data.projects;
-};
+import Path from "@/utils/routes/Path";
+import useProjectsQuery from "@/hooks/query/projects/useProjectsQuery";
+import useUsersQuery from '@/hooks/query/users/useUsersQuery';
+import { BasicButton } from "@/styles/ui-components/styled-button";
 
 const ResumePage = () => {
   const navigate = useNavigate();
+  const { WRITE, MYINFO } = Path;
 
   const {
     data: userData,
     isError: userIsError,
     isLoading: userIsLoading,
-  } = useQuery<UsersResponse>({
-    queryKey: ["users"],
-    queryFn: () => getFetchUsers(),
-  });
+  } = useUsersQuery()
 
   const {
     data: projectsData,
     isError: projectsIsError,
     isLoading: projectsIsLoading,
-  } = useQuery({
-    queryKey: ["projects", Number(userData?.id)],
-    queryFn: () => getFetchProject(Number(userData?.id)),
-    enabled: !!userData?.id,
-  });
+  } = useProjectsQuery(Number(userData?.id));
 
+  useEffect(() => {
+    console.log(projectsData)
+  }, [projectsData])
+
+  if (projectsIsLoading || userIsLoading) {
+    return <div className="flex justify-center py-[10%]">불러오는 중...</div>;
+  }
   if (projectsIsLoading || userIsLoading) {
     return <div className="flex justify-center py-[10%]">불러오는 중...</div>;
   }
@@ -57,7 +44,7 @@ const ResumePage = () => {
             <div className="add-btn absolute top-[7px] right-0 w-[150px]">
               <BasicButton
                 onClick={() => {
-                  navigate("/write", { replace: false });
+                  navigate(MYINFO, { replace: false });
                 }}
               >
                 <AiOutlinePlus size={12} />
@@ -65,7 +52,7 @@ const ResumePage = () => {
               <span
                 className="hover:text-gray-500 cursor-pointer px-2"
                 onClick={() => {
-                  navigate("/myinfo", { replace: false });
+                  navigate(MYINFO, { replace: false });
                 }}
               >
                 내정보 관리
@@ -78,7 +65,7 @@ const ResumePage = () => {
             <div className="add-btn absolute top-[7px] right-0 w-[150px]">
               <BasicButton
                 onClick={() => {
-                  navigate("/write", { replace: false });
+                  navigate(MYINFO, { replace: false });
                 }}
               >
                 <AiOutlinePlus size={12} />
@@ -86,7 +73,7 @@ const ResumePage = () => {
               <span
                 className="hover:text-gray-500 cursor-pointer px-2"
                 onClick={() => {
-                  navigate("/myinfo", { replace: false });
+                  navigate(MYINFO, { replace: false });
                 }}
               >
                 내정보 관리
@@ -96,24 +83,26 @@ const ResumePage = () => {
           </section>
           {/* projects */}
           <section className="projects relative">
-            <div className="add-btn absolute top-[7px] right-0 w-[150px]">
-              <BasicButton
-                onClick={() => {
-                  navigate("/write", { replace: false });
-                }}
-              >
-                <AiOutlinePlus size={12} />
-              </BasicButton>
-              <span
-                className="hover:text-gray-500 cursor-pointer px-2"
-                onClick={() => {
-                  navigate("/write", { replace: false });
-                }}
-              >
-                프로젝트 추가
-              </span>
-            </div>
-            {projectsData && <ProjectInfo projects={projectsData} />}
+            <>
+              <div className="add-btn absolute top-[7px] right-0 w-[150px]">
+                <BasicButton
+                  onClick={() => {
+                    navigate(WRITE, { replace: false });
+                  }}
+                >
+                  <AiOutlinePlus size={12} />
+                </BasicButton>
+                <span
+                  className="hover:text-gray-500 cursor-pointer px-2"
+                  onClick={() => {
+                    navigate(WRITE, { replace: false });
+                  }}
+                >
+                  프로젝트 추가
+                </span>
+              </div>
+              {projectsData && <ProjectInfo projects={projectsData} />}
+            </>
           </section>
         </div>
       </div>

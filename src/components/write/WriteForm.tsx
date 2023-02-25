@@ -1,26 +1,28 @@
-import api from "@/libs/axios/api";
-import ProjectResponse from "@/models/projects";
 import { useRef, FormEvent, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import useCreateTodoMutation from "@/hooks/mutation/project/useCreateProjectMutation";
 import UploadButton from "./base/uploadButton";
+import { useMutation } from "@tanstack/react-query";
+import api from "@/libs/axios/api";
+import Path from "@/utils/routes/Path";
 const WriteForm = () => {
   const navigate = useNavigate();
   const projectNameRef = useRef<HTMLInputElement | null>(null);
   const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
   const projectLinkRef = useRef<HTMLInputElement | null>(null);
+  const mutatiton = useCreateTodoMutation();
 
+  const { RESUME } = Path;
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (projectNameRef.current && projectDescRef.current && projectLinkRef.current) {
       const newData = {
-        projectName: projectNameRef.current.value,
-        desc: projectDescRef.current.value,
+        name: projectNameRef.current.value,
+        description: projectDescRef.current.value,
         link: projectLinkRef.current.value,
       };
-      
-      api.post<ProjectResponse[]>('http://localhost:8080/project', newData)
-       .then(res => console.log(res.data))
-       navigate('/project', {replace: true}) 
+      mutatiton.mutate(newData);
+      navigate(RESUME, { replace: true });
     }
   };
 
@@ -82,12 +84,15 @@ const WriteForm = () => {
                 </div>
                 <div className="btn-group w-full flex py-5 gap-3">
                   <div className="flex-1">
-                    <UploadButton btnType="취소" onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                       navigate('/project', {replace: true})
-                    }}/>
+                    <UploadButton
+                      btnType="취소"
+                      onClick={(e: MouseEvent<HTMLButtonElement>) => {
+                        navigate(RESUME, { replace: true });
+                      }}
+                    />
                   </div>
                   <div className="flex-1">
-                    <UploadButton btnType="저장" type="submit"/>
+                    <UploadButton btnType="저장" type="submit" />
                   </div>
                 </div>
               </form>

@@ -4,9 +4,9 @@ import { MdEdit, MdMoreVert, MdOutlineDeleteOutline } from "react-icons/md";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 interface IProps {
-  id: string;
-  onRemoveProject: (id: string) => void;
-  onEditProject: (id: string) => void;
+  id?: number;
+  onRemoveProject: (id?: number) => void;
+  onEditProject: (id?: number) => void;
 }
 
 const DrowDownMenu = ({ id, onRemoveProject, onEditProject }: IProps) => {

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ProjectResponse from "@/models/projects";
 import api from "@/libs/axios/api";
 import DrowDownMenu from "../Menu/DrowDownMenu";
+import useDeleteProjectMutation from "@/hooks/mutation/project/useDeleteProjectMutation";
 
 interface IProps {
   project: ProjectResponse;
@@ -11,23 +12,20 @@ interface IProps {
 const ProjectItem = ({ project }: IProps) => {
   const { id, name, description, link } = project;
   const navigate = useNavigate();
+  const mutatation = useDeleteProjectMutation();
 
-  const onRemoveProject = (projectId: string) => {
-    const deleteFetchProjectData = () => {
-      api.delete<ProjectResponse>(`http://localhost:5000/project/${projectId}`);
-      navigate("/", { replace: true });
-    };
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      deleteFetchProjectData();
+  const onRemoveProject = (projectId?: number) => {
+    if (projectId && window.confirm("정말 삭제하시겠습니까?")) {
+      mutatation.mutate(projectId);
     }
   };
 
   const onEditProject = () => {};
 
   return (
-    <div key={id} className="p-item relative py-4 px-8 w-full bg-white shadow-lg rounded-lg">
-      <div>
-        <div className="absolute top-4 right-2">
+    <div key={id} className="p-item relative py-4 px-8 w-[573px] bg-white shadow-lg rounded-lg">
+      <div className="flex flex-col w-[95%] gap-4">
+        <div className="absolute top-[1rem] right-2">
           <DrowDownMenu
             key={id}
             id={id}
@@ -37,12 +35,14 @@ const ProjectItem = ({ project }: IProps) => {
         </div>
         <div className="py-2">
           <span className="text-[22px] font-bold">{name}</span>
-        </div>
         <div className="py-2">
+          <span className="text-[22px] font-bold">{name}</span>
+        </div>
+        <div>
           <div>
             <span className="text-[20px] font-semibold">설명</span>
           </div>
-          <span className="text-[18px]">{description}</span>
+          <span>{description}</span>
         </div>
         <div className="py-2">
           <div>
@@ -53,6 +53,7 @@ const ProjectItem = ({ project }: IProps) => {
           </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 };
