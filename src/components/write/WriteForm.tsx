@@ -87,7 +87,7 @@ const WriteForm = () => {
                     <UploadButton
                       btnType="취소"
                       onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                        navigate("/project", { replace: true });
+                        navigate(RESUME, { replace: true });
                       }}
                     />
                   </div>
