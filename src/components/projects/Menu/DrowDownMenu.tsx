@@ -1,3 +1,4 @@
+import ProjectResponse from "@/models/projects";
 import { DefaultButton } from "@/styles/ui-components/styled-button";
 import React, { useState } from "react";
 import { MdEdit, MdMoreVert, MdOutlineDeleteOutline } from "react-icons/md";
@@ -5,11 +6,11 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 
 interface IProps {
   id?: number;
-  onRemoveProject: (id?: number) => void;
-  onEditProject: (id?: number) => void;
+  onRemoveProject: (id: number) => void;
+  onEditTarget: (id: number) => void;
 }
 
-const DrowDownMenu = ({ id, onRemoveProject, onEditProject }: IProps) => {
+const DrowDownMenu = ({ id, onRemoveProject, onEditTarget }: IProps) => {
   const [isVisible, setVisible] = useState(false);
   return (
     <>
@@ -31,8 +32,11 @@ const DrowDownMenu = ({ id, onRemoveProject, onEditProject }: IProps) => {
               <span
                 className="text-base"
                 onClick={() => {
-                  console.log({ id });
-                  onRemoveProject(id);
+                  if(id) {
+                    console.log({ id });
+                    onRemoveProject(id);
+                    setVisible((prev) => (prev = false));
+                  }
                 }}
               >
                 삭제
@@ -44,7 +48,17 @@ const DrowDownMenu = ({ id, onRemoveProject, onEditProject }: IProps) => {
               <span className="text-2xl text-gray-700">
                 <MdEdit />
               </span>
-              <span className="text-base">수정</span>
+              <span
+                className="text-base"
+                onClick={() => {
+                  if(id) {
+                    onEditTarget(id);
+                    setVisible((prev) => (prev = false));
+                  }
+                }}
+              >
+                수정
+              </span>
             </Link>
           </li>
         </ul>
