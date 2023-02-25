@@ -35,25 +35,25 @@ const ProjectItem = ({ project }: IProps) => {
         </div>
         <div className="py-2">
           <span className="text-[22px] font-bold">{name}</span>
-        <div className="py-2">
-          <span className="text-[22px] font-bold">{name}</span>
-        </div>
-        <div>
-          <div>
-            <span className="text-[20px] font-semibold">설명</span>
+          <div className="py-2">
+            <span className="text-[22px] font-bold">{name}</span>
           </div>
-          <span>{description}</span>
-        </div>
-        <div className="py-2">
           <div>
-            <span className="text-[20px] font-semibold">관련 링크</span>
+            <div>
+              <span className="text-[20px] font-semibold">설명</span>
+            </div>
+            <span>{description}</span>
           </div>
-          <Link to={link} target="_blank">
-            <span className="text-[18px]">{link}</span>
-          </Link>
+          <div className="py-2">
+            <div>
+              <span className="text-[20px] font-semibold">관련 링크</span>
+            </div>
+            <Link to={link} target="_blank">
+              <span className="text-[18px]">{link}</span>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
