@@ -1,24 +1,51 @@
-import { MouseEvent, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, MouseEvent, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import UploadButton from "@/components/write/base/uploadButton";
+import useUpdateProjectMutation from "@/hooks/mutation/project/useUpdateProjectMutation";
 import ProjectResponse from "@/models/projects";
 
 interface IProps {
-  id: number;
+  project: ProjectResponse;
   setIsEditMode: (isEditMode: boolean) => void;
-  // onEditProject: (id: number, data:ProjectResponse) => void;
 }
 
-const UpdateItem = ({ setIsEditMode, id }: IProps) => {
-  const onEditProject = (e: MouseEvent<HTMLButtonElement>) => {
+const UpdateItem = ({ setIsEditMode, project }: IProps) => {
+  const { id, name, description, link } = project;
+
+  const navigate = useNavigate();
+  const projectNameRef = useRef<HTMLInputElement | null>(null);
+  const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
+  const projectLinkRef = useRef<HTMLInputElement | null>(null);
+  const mutation = useUpdateProjectMutation();
+
+  useEffect(() => {
+    if (projectNameRef.current && projectDescRef.current && projectLinkRef.current) {
+      projectNameRef.current.value = name;
+      projectDescRef.current.value = description;
+      projectLinkRef.current.value = link;
+    }
+  }, []);
+
+  const onEditProject = (e: FormEvent<HTMLFormElement>) => {
     // 수정 로직 작성
-    
+    e.preventDefault();
+    if (projectNameRef.current && projectDescRef.current && projectLinkRef.current) {
+      const updateData = {
+        name: projectNameRef.current.value,
+        description: projectDescRef.current.value,
+        link: projectLinkRef.current.value,
+      };
+      mutation.mutate({ id, ...updateData });
+      setTimeout(() => {
+        setIsEditMode(false);
+      }, 100);
+    }
   };
-  
-  console.log({updateTarget: id})
+
+  console.log({ updateTarget: id });
 
   return (
-    <>
+    <form onSubmit={onEditProject}>
       {/* 수정 */}
       <div className="py-2">
         <input
@@ -26,6 +53,7 @@ const UpdateItem = ({ setIsEditMode, id }: IProps) => {
           type="text"
           name="pname"
           placeholder="프로젝트명을 입력해주세요."
+          ref={projectNameRef}
           required
         />
       </div>
@@ -37,6 +65,7 @@ const UpdateItem = ({ setIsEditMode, id }: IProps) => {
           className={`border w-[95%] h-[200px] resize-none rounded-sm py-3 px-4 focus:outline-none focus:border-gray-500`}
           name="pdesc"
           placeholder="프로젝트에 대한 설명을 입력해주세요."
+          ref={projectDescRef}
           required
         />
       </div>
@@ -49,6 +78,7 @@ const UpdateItem = ({ setIsEditMode, id }: IProps) => {
           type="text"
           name="pname"
           placeholder="프로젝트명을 입력해주세요."
+          ref={projectLinkRef}
           required
         />
       </div>
@@ -62,10 +92,10 @@ const UpdateItem = ({ setIsEditMode, id }: IProps) => {
           />
         </div>
         <div className="flex-1">
-          <UploadButton btnType="저장" type="submit" onClick={onEditProject} />
+          <UploadButton btnType="저장" type="submit" />
         </div>
       </div>
-    </>
+    </form>
   );
 };
 

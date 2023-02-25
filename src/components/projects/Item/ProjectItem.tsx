@@ -4,7 +4,6 @@ import ProjectResponse from "@/models/projects";
 import api from "@/libs/axios/api";
 import DrowDownMenu from "../Menu/DrowDownMenu";
 import useDeleteProjectMutation from "@/hooks/mutation/project/useDeleteProjectMutation";
-import UploadButton from "@/components/write/base/uploadButton";
 import UpdateItem from "../edit/UpdateItem";
 
 interface IProps {
@@ -15,7 +14,6 @@ const ProjectItem = ({ project }: IProps) => {
   const { id, name, description, link } = project;
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [updateTargetId, setUpdateTargetId] = useState<number | null>(null);
-  const navigate = useNavigate();
   const mutatation = useDeleteProjectMutation();
 
   const onRemoveProject = (projectId?: number) => {
@@ -29,6 +27,8 @@ const ProjectItem = ({ project }: IProps) => {
     setIsEditMode(true);
     setUpdateTargetId((prev) => (prev = id));
   };
+
+  const projectObj = { updateTargetId, id, name, description, link };
 
   return (
     <div key={id} className="p-item relative py-12 px-8 w-full bg-white shadow-lg rounded-lg">
@@ -44,7 +44,7 @@ const ProjectItem = ({ project }: IProps) => {
           )}
         </div>
         {isEditMode && id === updateTargetId ? (
-          <UpdateItem id={updateTargetId} setIsEditMode={setIsEditMode} />
+          <UpdateItem project={projectObj} setIsEditMode={setIsEditMode} />
         ) : (
           <>
             <div className="py-2">

@@ -2,15 +2,13 @@ import { useRef, FormEvent, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import useCreateTodoMutation from "@/hooks/mutation/project/useCreateProjectMutation";
 import UploadButton from "./base/uploadButton";
-import { useMutation } from "@tanstack/react-query";
-import api from "@/libs/axios/api";
 import Path from "@/utils/routes/Path";
 const WriteForm = () => {
   const navigate = useNavigate();
   const projectNameRef = useRef<HTMLInputElement | null>(null);
   const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
   const projectLinkRef = useRef<HTMLInputElement | null>(null);
-  const mutatiton = useCreateTodoMutation();
+  const mutation = useCreateTodoMutation();
 
   const { RESUME } = Path;
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -21,7 +19,7 @@ const WriteForm = () => {
         description: projectDescRef.current.value,
         link: projectLinkRef.current.value,
       };
-      mutatiton.mutate(newData);
+      mutation.mutate(newData);
       navigate(RESUME, { replace: true });
     }
   };
