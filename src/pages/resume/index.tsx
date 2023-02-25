@@ -32,6 +32,9 @@ const ResumePage = () => {
   if (projectsIsLoading || userIsLoading) {
     return <div className="flex justify-center py-[10%]">불러오는 중...</div>;
   }
+  if (projectsIsLoading || userIsLoading) {
+    return <div className="flex justify-center py-[10%]">불러오는 중...</div>;
+  }
   return (
     <div className="h-[calc(100vh_-_80px)] pt-10 relative bg-white">
       <div className="portfolio flex flex-col items-center">
