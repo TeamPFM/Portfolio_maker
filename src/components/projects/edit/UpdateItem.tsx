@@ -1,5 +1,4 @@
-import { useEffect, useRef, MouseEvent, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, MouseEvent, FormEvent } from "react";
 import UploadButton from "@/components/write/base/uploadButton";
 import useUpdateProjectMutation from "@/hooks/mutation/project/useUpdateProjectMutation";
 import ProjectResponse from "@/models/projects";
@@ -11,8 +10,6 @@ interface IProps {
 
 const UpdateItem = ({ setIsEditMode, project }: IProps) => {
   const { id, name, description, link } = project;
-
-  const navigate = useNavigate();
   const projectNameRef = useRef<HTMLInputElement | null>(null);
   const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
   const projectLinkRef = useRef<HTMLInputElement | null>(null);
@@ -41,8 +38,6 @@ const UpdateItem = ({ setIsEditMode, project }: IProps) => {
       }, 100);
     }
   };
-
-  console.log({ updateTarget: id });
 
   return (
     <form onSubmit={onEditProject}>
@@ -87,7 +82,11 @@ const UpdateItem = ({ setIsEditMode, project }: IProps) => {
           <UploadButton
             btnType="취소"
             onClick={(e: MouseEvent<HTMLButtonElement>) => {
-              setIsEditMode(false);
+              if (window.confirm("취소하면 수정하신 내용이 삭제됩니다.\n그래도 취소하실건가요?")) {
+                setIsEditMode(false);
+              } else {
+                return;
+              }
             }}
           />
         </div>
@@ -99,4 +98,4 @@ const UpdateItem = ({ setIsEditMode, project }: IProps) => {
   );
 };
 
-export default UpdateItem;
+export default React.memo(UpdateItem);

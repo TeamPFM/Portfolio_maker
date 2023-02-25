@@ -85,7 +85,15 @@ const WriteForm = () => {
                     <UploadButton
                       btnType="취소"
                       onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                        navigate(RESUME, { replace: true });
+                        if (
+                          window.confirm(
+                            "취소하면 수정하신 내용이 삭제됩니다.\n그래도 취소하실건가요?"
+                          )
+                        ) {
+                          navigate(RESUME, { replace: true });
+                        } else {
+                          return;
+                        }
                       }}
                     />
                   </div>

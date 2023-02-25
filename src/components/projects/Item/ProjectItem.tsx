@@ -1,7 +1,6 @@
-import { MouseEvent, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import ProjectResponse from "@/models/projects";
-import api from "@/libs/axios/api";
 import DrowDownMenu from "../Menu/DrowDownMenu";
 import useDeleteProjectMutation from "@/hooks/mutation/project/useDeleteProjectMutation";
 import UpdateItem from "../edit/UpdateItem";
