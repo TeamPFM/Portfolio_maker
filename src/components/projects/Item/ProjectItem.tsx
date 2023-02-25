@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ProjectResponse from "@/models/projects";
 import api from "@/libs/axios/api";
 import DrowDownMenu from "../Menu/DrowDownMenu";
+import useDeleteProjectMutation from "@/hooks/mutation/project/useDeleteProjectMutation";
 
 interface IProps {
   project: ProjectResponse;
@@ -11,14 +12,15 @@ interface IProps {
 const ProjectItem = ({ project }: IProps) => {
   const { id, name, description, link } = project;
   const navigate = useNavigate();
+  const mutatation = useDeleteProjectMutation();
 
-  const onRemoveProject = (projectId: string) => {
-    const deleteFetchProjectData = () => {
-      api.delete<ProjectResponse>(`http://localhost:5000/project/${projectId}`);
-      navigate("/", { replace: true });
-    };
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      deleteFetchProjectData();
+  const onRemoveProject = (projectId?: number) => {
+    // const deleteFetchProjectData = () => {
+    //   api.delete<ProjectResponse>(`http://localhost:5000/project/${projectId}`);
+    //   navigate("/", { replace: true });
+    // };
+    if (projectId && window.confirm("정말 삭제하시겠습니까?")) {
+      mutatation.mutate(projectId);
     }
   };
 
