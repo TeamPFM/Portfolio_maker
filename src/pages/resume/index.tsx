@@ -8,6 +8,7 @@ import AboutMe from "@/components/resume/AboutMe";
 import ProfileMe from "@/components/resume/ProfileMe";
 import api from "@/libs/axios/api";
 import { useQuery } from "@tanstack/react-query";
+import Path from "@/utils/routes/Path";
 
 const getFetchUsers = async () => {
   const { data } = await api.get<UsersResponse>("/api/users/info");
@@ -25,6 +26,7 @@ const getFetchProject = async (userId: number) => {
 
 const ResumePage = () => {
   const navigate = useNavigate();
+  const { WRITE, MYINFO } = Path;
 
   const {
     data: userData,
@@ -57,7 +59,7 @@ const ResumePage = () => {
             <div className="add-btn absolute top-[7px] right-0 w-[150px]">
               <BasicButton
                 onClick={() => {
-                  navigate("/write", { replace: false });
+                  navigate(MYINFO, { replace: false });
                 }}
               >
                 <AiOutlinePlus size={12} />
@@ -65,7 +67,7 @@ const ResumePage = () => {
               <span
                 className="hover:text-gray-500 cursor-pointer px-2"
                 onClick={() => {
-                  navigate("/myinfo", { replace: false });
+                  navigate(MYINFO, { replace: false });
                 }}
               >
                 내정보 관리
@@ -78,7 +80,7 @@ const ResumePage = () => {
             <div className="add-btn absolute top-[7px] right-0 w-[150px]">
               <BasicButton
                 onClick={() => {
-                  navigate("/write", { replace: false });
+                  navigate(MYINFO, { replace: false });
                 }}
               >
                 <AiOutlinePlus size={12} />
@@ -86,7 +88,7 @@ const ResumePage = () => {
               <span
                 className="hover:text-gray-500 cursor-pointer px-2"
                 onClick={() => {
-                  navigate("/myinfo", { replace: false });
+                  navigate(MYINFO, { replace: false });
                 }}
               >
                 내정보 관리
@@ -99,7 +101,7 @@ const ResumePage = () => {
             <div className="add-btn absolute top-[7px] right-0 w-[150px]">
               <BasicButton
                 onClick={() => {
-                  navigate("/write", { replace: false });
+                  navigate(WRITE, { replace: false });
                 }}
               >
                 <AiOutlinePlus size={12} />
@@ -107,7 +109,7 @@ const ResumePage = () => {
               <span
                 className="hover:text-gray-500 cursor-pointer px-2"
                 onClick={() => {
-                  navigate("/write", { replace: false });
+                  navigate(WRITE, { replace: false });
                 }}
               >
                 프로젝트 추가
