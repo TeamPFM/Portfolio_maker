@@ -15,10 +15,6 @@ const ProjectItem = ({ project }: IProps) => {
   const mutatation = useDeleteProjectMutation();
 
   const onRemoveProject = (projectId?: number) => {
-    // const deleteFetchProjectData = () => {
-    //   api.delete<ProjectResponse>(`http://localhost:5000/project/${projectId}`);
-    //   navigate("/", { replace: true });
-    // };
     if (projectId && window.confirm("정말 삭제하시겠습니까?")) {
       mutatation.mutate(projectId);
     }
