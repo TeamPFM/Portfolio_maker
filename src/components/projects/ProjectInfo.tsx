@@ -8,7 +8,7 @@ const ProjectInfo = ({ projects }: IProps) => {
   return (
     <>
       <div className="border-l-4 border-l-slate-400 border-b border-b-gray-200 px-3 py-2">
-        <span className="text-xl font-semibold">Projects</span>
+        <span className="text-2xl font-semibold">Projects</span>
       </div>
       <div className="flex flex-col items-center gap-4 pt-8">
         {projects?.length === 0 && (

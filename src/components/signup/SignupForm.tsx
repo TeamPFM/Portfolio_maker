@@ -167,7 +167,6 @@ const SignupForm = () => {
           api
             .post<AuthResponse>("/api/users", reqData)
             .then(({ data }) => {
-              token.setToken("token", data.token);
               navigate(LOGIN, { replace: true });
             })
             .catch(console.error);

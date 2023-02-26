@@ -14,15 +14,14 @@ function App() {
   const [RoutesComponent, setRoutesComponent] =
     useState<React.ReactElement | null>(null);
 
-  const gettoken = token.getToken("token");
+  const authToken = token.getToken("token");
 
   useLayoutEffect(() => {
-    const gettoken = token.getToken("token");
-    console.log(gettoken);
-    // FIXME 토큰받으면 토큰으로 처리
-    gettoken && setRoutesComponent(<ProtectedRoutes />);
-    !gettoken && setRoutesComponent(<UnauthenticatedRoutes />);
-  }, [gettoken]);
+    const authToken = token.getToken("token");
+    console.log(authToken);
+    authToken && setRoutesComponent(<ProtectedRoutes />);
+    !authToken && setRoutesComponent(<UnauthenticatedRoutes />);
+  }, [authToken]);
 
   useLayoutEffect(() => {
     const pathname =
@@ -38,7 +37,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-main bg-opacity-40">
+    <div className="bg-main bg-opacity-40">
       <header>{hasNav && <GNB />}</header>
       <main className="w-full h-full pt-20">
         <div className={`w-full h-full`}>{RoutesComponent}</div>

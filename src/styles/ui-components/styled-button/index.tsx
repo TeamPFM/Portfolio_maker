@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 import { CommonButtonProps } from "@utils/common-props";
 
+
 const ButtonInterface: FunctionComponent<CommonButtonProps> = (props) => {
   const { children, className, ...restProps } = props;
   const baseStyleClasses =
@@ -12,6 +13,8 @@ const ButtonInterface: FunctionComponent<CommonButtonProps> = (props) => {
     </button>
   );
 };
+
+
 
 const MainButton: FunctionComponent<CommonButtonProps> = (props) => {
   const { children, className, ...restProps } = props;

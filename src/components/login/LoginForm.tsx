@@ -17,7 +17,7 @@ const LoginForm = () => {
   const { SIGNUP, HOME } = Path;
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
-  // 가입신청 공백체크
+  
   const [validPassed, setValidPassed] = useState<boolean>(false);
 
   const userEmailRef = useRef<HTMLInputElement | null>(null);
@@ -40,8 +40,10 @@ const LoginForm = () => {
               placeholder="이메일을 입력해주세요."
               ref={userEmailRef}
               onChange={(evt) => {
-                const registerEmail = evt.target.value;
-                console.log(registerEmail);
+                const emailExp =
+                /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+              const newregisterEmail = evt.target.value;
+              newregisterEmail.replace(emailExp, "");
               }}
               required
             />
