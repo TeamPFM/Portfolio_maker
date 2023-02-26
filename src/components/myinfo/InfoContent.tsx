@@ -1,7 +1,8 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserInfoUpdateRequest, UserInfoUpdateResponse } from "@/models/myinfo";
 import { MyInfoProps } from "@/pages/myinfo";
+import token from "@/libs/token";
 import api from "@/libs/axios/api";
 import MainButton from "@/styles/ui-components/styled-button";
 import Path from "@/utils/routes/Path";
@@ -10,6 +11,7 @@ const essentialMark: string = `after:content-['*'] after:ml-1.5 after:text-red-4
 
 const InfoContent = (props: MyInfoProps) => {
   const navigate = useNavigate();
+  const gettoken = token.getToken("token");
 
   const { HOME } = Path;
 
@@ -147,8 +149,8 @@ const InfoContent = (props: MyInfoProps) => {
         </div>
       ) : (
         <div className="flex justify-center items-center gap-10 w-full h-full py-10 px-8">
-          <MainButton className="h-1/2 w-1/2">이력서 생성</MainButton>
-          <MainButton className="h-1/2 w-1/2">이력서 보기</MainButton>
+          {gettoken && <MainButton>이력서 생성</MainButton>}
+          <MainButton>이력서 보기</MainButton>
         </div>
       )}
     </div>
