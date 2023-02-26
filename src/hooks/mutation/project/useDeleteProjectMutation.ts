@@ -2,14 +2,16 @@ import api from "@/libs/axios/api";
 import ProjectResponse from "@/models/projects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const deleteFetchProjectData = (projectId: number) => {
-  const res = api.delete<ProjectResponse>(`/api/projects/${projectId}`);
+
+const deleteFetchProject = async (projectId: number) => {
+  const res = await api.delete<ProjectResponse>(`/api/projects/${projectId}`);
   return res;
 };
 
 const useDeleteProjectMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation(deleteFetchProjectData, {
+
+  return useMutation(deleteFetchProject, {
     onError: (error) => {
       return error;
     },

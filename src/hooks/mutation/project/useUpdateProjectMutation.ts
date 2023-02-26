@@ -2,21 +2,23 @@ import api from "@/libs/axios/api";
 import ProjectResponse from "@/models/projects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const postFetchProject = async (newData: ProjectResponse) => {
-  const res = api.post<ProjectResponse[]>("/api/projects", {
-    project: newData
+
+const updateFetchProject = async ({ id: projectId, ...data }: ProjectResponse) => {
+  const res = await api.put<ProjectResponse>(`/api/projects/${projectId}`, {
+    project: data,
   });
-  console.log(res);
   return res;
 };
 
 const useUpdateProjectMutation = () => {
   const queryClient = useQueryClient();
-  return useMutation(postFetchProject, {
+
+  return useMutation(updateFetchProject, {
     onError: (error) => {
       return error;
     },
-    onSuccess: () => {
+    onSuccess: (data, variables, context) => {
+      console.log({ data, variables, context });
       queryClient.invalidateQueries<string>(["project"]);
     },
   });

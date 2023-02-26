@@ -47,7 +47,7 @@ const HomePage = () => {
             ],
           }}
           transition={{
-            duration: 3,
+            duration: 3, //초 단위
             ease: "easeInOut",
             times: [0, 0.2, 0.5, 0.8, 1],
             repeat: Infinity,

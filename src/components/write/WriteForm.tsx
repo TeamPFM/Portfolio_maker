@@ -1,12 +1,13 @@
-import { useRef, FormEvent, MouseEvent } from "react";
+
+import { useState, useRef, FormEvent, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import useCreateTodoMutation from "@/hooks/mutation/project/useCreateProjectMutation";
 import UploadButton from "./base/uploadButton";
-import { useMutation } from "@tanstack/react-query";
-import api from "@/libs/axios/api";
 import Path from "@/utils/routes/Path";
+import UploadImage from "../projects/uploadImage";
 const WriteForm = () => {
   const navigate = useNavigate();
+  const [projectImageUrl, setProjectImageUrl] = useState('');
   const projectNameRef = useRef<HTMLInputElement | null>(null);
   const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
   const projectLinkRef = useRef<HTMLInputElement | null>(null);
@@ -21,18 +22,18 @@ const WriteForm = () => {
         description: projectDescRef.current.value,
         link: projectLinkRef.current.value,
       };
-      mutatiton.mutate(newData);
+      mutation.mutate(newData);
       navigate(RESUME, { replace: true });
     }
   };
 
   return (
-    <section className="w-full flex flex-col p-[1.8rem]">
+    <section className="w-full flex flex-col pt-[4px] pb-[7px]">
       <div className="w-auto flex justify-center">
-        <div className="max-w-3xl py-7 w-7/12">
+        <div className="max-w-3xl py-[28px] w-7/12">
           <div className="p-5 gap-5 w-full flex flex-col bg-white shadow-lg rounded-lg">
             <header className="py-4">
-              <span className="text-[20px] font-normal">프로젝트 등록</span>
+              <span className="text-[20px] font-bold">프로젝트 등록</span>
             </header>
             <div className="write-form">
               <form className="flex flex-col gap-3" onSubmit={onSubmit}>
@@ -48,6 +49,7 @@ const WriteForm = () => {
                       type="text"
                       name="pname"
                       placeholder="프로젝트명을 입력해주세요."
+                      autoComplete="off"
                       ref={projectNameRef}
                       required
                     />
@@ -68,14 +70,17 @@ const WriteForm = () => {
                   />
                 </div>
                 <div>
+                    <UploadImage setProjectImageUrl={setProjectImageUrl}/>
+                </div>
+                <div>
                   <p className={`pb-2 font-bold`}>링크</p>
                   <div>
-                    <label>링크 URL</label>
                     <input
                       className="border w-full h-8 rounded-sm py-6 px-4 focus:outline-none focus:border-gray-500"
                       name="link"
                       type="text"
                       ref={projectLinkRef}
+                      autoComplete="off"
                       placeholder="링크할 주소를 넣어주세요"
                       title="http, https을 포함해 url를 넣어주세요"
                       pattern="http[s]?://.+"
@@ -87,7 +92,15 @@ const WriteForm = () => {
                     <UploadButton
                       btnType="취소"
                       onClick={(e: MouseEvent<HTMLButtonElement>) => {
-                        navigate(RESUME, { replace: true });
+                        if (
+                          window.confirm(
+                            "취소하면 수정하신 내용이 삭제됩니다.\n그래도 취소하실건가요?"
+                          )
+                        ) {
+                          navigate(RESUME, { replace: true });
+                        } else {
+                          return;
+                        }
                       }}
                     />
                   </div>
