@@ -7,6 +7,8 @@ interface SampleState {
   setSampleString: (content: string) => void;
 }
 
+// const { sampleNumber } =  userStore(state => state.sampleNumber);
+
 const useStore = create<SampleState>((set) => ({
   // === Sample Number ===
   sampleNumber: 0, // Init value

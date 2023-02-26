@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaUserCircle } from "react-icons/fa";
@@ -12,13 +12,15 @@ const GNB = () => {
   const navigate = useNavigate();
 
   const { HOME, LOGIN, MYINFO } = Path;
-  const [isLogin, setIsLogin] = useState<Boolean>(true);
   const [isToggleMenu, setIsToggleMenu] = useState<Boolean>(false);
+
+  const authToken = token.getToken("token");
 
   const handleToggleMenu = () => {
     setIsToggleMenu(!isToggleMenu);
   };
 
+  
   const toggleMenuAnimate = {
     enter: {
       opacity: 1,
@@ -57,7 +59,7 @@ const GNB = () => {
             <button
               className="flex justify-center items-center rounded-full bg-main border-2 border-main opacity-70 hover:opacity-100 transition-all"
               onClick={() => {
-                isLogin
+                authToken
                   ? setIsToggleMenu(!isToggleMenu)
                   : navigate(LOGIN, { replace: true });
               }}
@@ -79,20 +81,11 @@ const GNB = () => {
                 내 정보
               </Link>
               <Link
-                to={LOGIN}
-                className="px-3 py-2 border-b-[1px] border-white hover:text-white hover:bg-main transition-all"
-                onClick={() => setIsToggleMenu(!isToggleMenu)}
-              >
-                로그인(임시)
-              </Link>
-              <Link
                 to={HOME}
                 className="px-3 py-2 hover:text-white hover:bg-main transition-all"
                 onClick={() => {
                   const removeToken = token.removeToken("token");
-                  //FIXME 차후 콘솔삭제(확인용)
                   const getToken = token.getToken("token");
-                  console.log("GNB 토큰여부", getToken);
                 }}
               >
                 로그아웃

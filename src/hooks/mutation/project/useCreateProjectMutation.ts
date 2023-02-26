@@ -2,9 +2,15 @@ import api from "@/libs/axios/api";
 import ProjectResponse from "@/models/projects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const postFetchProject = async (newData: ProjectResponse) => {
+interface IProps {
+  name: string;
+  description: string;
+  link: string;
+}
+
+const postFetchProject = async (newData: IProps) => {
   const res = api.post<ProjectResponse[]>("/api/projects", {
-    project: newData
+    project: newData,
   });
   console.log(res);
   return res;

@@ -13,10 +13,6 @@ const ProtectedRoutes = () => {
     WRITE,
     MYINFO,
     RESUME,
-    RESUME_CREATE,
-    RESUME_DELETE,
-    RESUME_READ,
-    RESUME_UPDATE,
   } = Path;
 
   return (
