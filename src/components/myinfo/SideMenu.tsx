@@ -1,8 +1,9 @@
 import Path from "@/utils/routes/Path";
 import api from "@/libs/axios/api";
+import token from "@/libs/token";
 import { FaUserCircle } from "react-icons/fa";
 import { MdModeEditOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChangeEvent, useRef, useState } from "react";
 import { MyInfoProps } from "@/pages/myinfo";
 import {
@@ -15,9 +16,10 @@ const BeforeBar: string =
 const BottomLinkStyle: string = `hover:text-gray-500 transition-all px-1`;
 
 const menuList: Array<string> = ["내 정보", "이력서"];
-const bottomMenuList: Array<string> = ["홈", "로그아웃"];
 
 const SideMenu = (props: MyInfoProps) => {
+  const navigate = useNavigate();
+
   const { HOME } = Path;
 
   const profileImageRef = useRef<HTMLInputElement>(null);
@@ -117,15 +119,18 @@ const SideMenu = (props: MyInfoProps) => {
       </ul>
 
       <div className="absolute bottom-4 right-5 text-gray-400 text-sm">
-        {bottomMenuList.map((v, idx) => (
-          <Link
-            key={idx}
-            to={HOME}
-            className={`${idx && BeforeBar} ${BottomLinkStyle}`}
-          >
-            {v}
-          </Link>
-        ))}
+        <button className={`${BottomLinkStyle}`} onClick={() => navigate(HOME)}>
+          홈
+        </button>
+        <button
+          className={`${BeforeBar} ${BottomLinkStyle}`}
+          onClick={() => {
+            navigate(HOME, { replace: true });
+            token.removeToken("token");
+          }}
+        >
+          로그아웃
+        </button>
       </div>
     </div>
   );
