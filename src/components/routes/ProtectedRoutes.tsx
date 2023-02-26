@@ -1,7 +1,7 @@
 import HomePage from "@/pages/home";
 import WritePage from "@/pages/write";
 import MyInfoPage from "@/pages/myinfo";
-import Path from "@utils/routes/Path";
+import Path from "@/utils/path/routes";
 import { Navigate, Route, Routes } from "react-router-dom";
 import ResumePage from "@/pages/resume";
 

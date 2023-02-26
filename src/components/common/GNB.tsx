@@ -5,7 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import H1 from "@/styles/ui-components/H1";
-import Path from "@/utils/routes/Path";
+import Path from "@/utils/path/routes";
 import token from "@/libs/token";
 
 const GNB = () => {

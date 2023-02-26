@@ -3,7 +3,7 @@ import token from "@/libs/token";
 import AuthResponse from "@/models/auth";
 import LoginRequest, { AuthRequest } from "@/models/auth";
 import MainButton from "@/styles/ui-components/styled-button";
-import Path from "@utils/routes/Path";
+import Path from "@/utils/path/routes";
 import { useCallback, useRef, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router";

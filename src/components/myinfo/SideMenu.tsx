@@ -1,4 +1,4 @@
-import Path from "@/utils/routes/Path";
+import Path from "@/utils/path/routes";
 import api from "@/libs/axios/api";
 import token from "@/libs/token";
 import { FaUserCircle } from "react-icons/fa";
@@ -11,9 +11,8 @@ import {
   UserInfoImageUpdateResponse,
 } from "@/models/myinfo";
 
-const BeforeBar: string =
-  "before:content-['|'] before:text-gray-300 before:text-xs before:pr-2";
-const BottomLinkStyle: string = `hover:text-gray-500 transition-all px-1`;
+const BeforeBar = "before:content-['|'] before:text-gray-300 before:text-xs before:pr-2";
+const BottomLinkStyle = "hover:text-gray-500 transition-all px-1";
 
 const menuList: Array<string> = ["내 정보", "이력서"];
 
@@ -45,7 +44,7 @@ const SideMenu = (props: MyInfoProps) => {
         .then((res) => {
           api
             .post<UserInfoImageUpdateResponse>("api/users/img/update", {
-              imageName: "",
+              imageName: "profile",
               imagePath: res.data.url,
             })
             .then((updateRes) => {
@@ -84,7 +83,7 @@ const SideMenu = (props: MyInfoProps) => {
             <MdModeEditOutline
               className="text-white text-lg"
               onClick={() => {
-                if (profileImageRef.current) profileImageRef.current.click();
+                !!profileImageRef.current && profileImageRef.current.click();
               }}
             />
             <input

@@ -1,4 +1,4 @@
-import Path from "@/utils/routes/Path";
+import Path from "@/utils/path/routes";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {

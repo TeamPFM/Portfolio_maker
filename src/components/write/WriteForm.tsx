@@ -1,10 +1,10 @@
-
 import { useState, useRef, FormEvent, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import useCreateTodoMutation from "@/hooks/mutation/project/useCreateProjectMutation";
 import UploadButton from "./base/uploadButton";
-import Path from "@/utils/routes/Path";
+import Path from "@/utils/path/routes";
 import UploadImage from "../projects/uploadImage";
+
 const WriteForm = () => {
   const navigate = useNavigate();
   const [projectImageUrl, setProjectImageUrl] = useState('');
@@ -22,7 +22,8 @@ const WriteForm = () => {
         description: projectDescRef.current.value,
         link: projectLinkRef.current.value,
       };
-      mutation.mutate(newData);
+      
+      mutatiton.mutate(newData);
       navigate(RESUME, { replace: true });
     }
   };

@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import MainButton from "@/styles/ui-components/styled-button";
+import Path from "@/utils/path/routes";
 
-import Path from "@/utils/routes/Path";
 
 const HomePage = () => {
   const navigate = useNavigate();

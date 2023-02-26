@@ -5,13 +5,13 @@ import { MyInfoProps } from "@/pages/myinfo";
 import token from "@/libs/token";
 import api from "@/libs/axios/api";
 import MainButton from "@/styles/ui-components/styled-button";
-import Path from "@/utils/routes/Path";
+import Path from "@/utils/path/routes";
 
-const essentialMark: string = `after:content-['*'] after:ml-1.5 after:text-red-400`;
+const essentialMark = "after:content-['*'] after:ml-1.5 after:text-red-400";
 
 const InfoContent = (props: MyInfoProps) => {
   const navigate = useNavigate();
-  const gettoken = token.getToken("token");
+  const authToken = token.getToken("token");
 
   const { HOME } = Path;
 
@@ -31,7 +31,7 @@ const InfoContent = (props: MyInfoProps) => {
         <div className="py-10 px-8">
           <fieldset className={`w-full flex items-center mb-8`}>
             <label
-              className={`${essentialMark} basis-32 font-semibold`}
+              className={`basis-32 font-semibold ${essentialMark}`}
               htmlFor="email"
             >
               이메일
@@ -149,7 +149,7 @@ const InfoContent = (props: MyInfoProps) => {
         </div>
       ) : (
         <div className="flex justify-center items-center gap-10 w-full h-full py-10 px-8">
-          {gettoken && <MainButton>이력서 생성</MainButton>}
+          {authToken && <MainButton>이력서 생성</MainButton>}
           <MainButton>이력서 보기</MainButton>
         </div>
       )}

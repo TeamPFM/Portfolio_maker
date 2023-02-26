@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
-import Path from "./utils/routes/Path";
+import Path from "@/utils/path/routes";
 import { useLayoutEffect, useState } from "react";
-import GNB from "./components/common/GNB";
-import ProtectedRoutes from "./components/routes/ProtectedRoutes";
-import UnauthenticatedRoutes from "./components/routes/UnauthenticatedRoutes";
-import token from "./libs/token";
+import GNB from "@components/common/GNB";
+import ProtectedRoutes from "@components/routes/ProtectedRoutes";
+import UnauthenticatedRoutes from "@components/routes/UnauthenticatedRoutes";
+import token from "@libs/token";
 
 function App() {
   const location = useLocation();
