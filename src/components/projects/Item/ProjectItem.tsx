@@ -5,12 +5,14 @@ import DrowDownMenu from "../Menu/DrowDownMenu";
 import useDeleteProjectMutation from "@/hooks/mutation/project/useDeleteProjectMutation";
 import UpdateItem from "../edit/UpdateItem";
 
+
 interface IProps {
   project: ProjectResponse;
 }
 
 const ProjectItem = ({ project }: IProps) => {
   const { id, name, description, link } = project;
+  const navigate = useNavigate();
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [updateTargetId, setUpdateTargetId] = useState<number | null>(null);
   const mutatation = useDeleteProjectMutation();

@@ -1,3 +1,4 @@
+
 import { useState, useRef, FormEvent, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import useCreateTodoMutation from "@/hooks/mutation/project/useCreateProjectMutation";
@@ -10,7 +11,7 @@ const WriteForm = () => {
   const projectNameRef = useRef<HTMLInputElement | null>(null);
   const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
   const projectLinkRef = useRef<HTMLInputElement | null>(null);
-  const mutation = useCreateTodoMutation();
+  const mutatiton = useCreateTodoMutation();
 
   const { RESUME } = Path;
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
