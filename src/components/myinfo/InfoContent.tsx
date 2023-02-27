@@ -3,10 +3,11 @@ import API_PATH from "@/utils/path/api";
 import token from "@/libs/token";
 import api from "@/libs/axios/api";
 import MainButton from "@/styles/ui-components/styled-button";
-import { useRef, useLayoutEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserInfoUpdateRequest, UserInfoUpdateResponse } from "@/models/myinfo";
 import { MyInfoProps } from "@/pages/myinfo";
+import SkillForm from "./SkillForm";
 
 const essentialMark = "after:content-['*'] after:ml-1.5 after:text-red-400";
 
@@ -22,6 +23,8 @@ const InfoContent = (props: MyInfoProps) => {
   const userPhoneRef = useRef<HTMLInputElement | null>(null);
   const userLinkRef = useRef<HTMLInputElement | null>(null);
   const userDescRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const [strSkills, setStrSkills] = useState<string>("");
 
   return (
     <div className="flex-auto relative rounded-xl bg-white shadow-lg overflow-auto">
@@ -87,7 +90,7 @@ const InfoContent = (props: MyInfoProps) => {
 
         <fieldset className={`w-full flex items-center mb-8`}>
           <label className={`basis-32 font-semibold`} htmlFor="link">
-            link
+            Link
           </label>
           <input
             className="border w-full leading-8 rounded-sm focus:outline-none focus:border-main px-2"
@@ -98,6 +101,12 @@ const InfoContent = (props: MyInfoProps) => {
             ref={userLinkRef}
           />
         </fieldset>
+
+        <SkillForm
+          strSkills={strSkills}
+          setStrSkills={setStrSkills}
+          initSkills={props.userInfo.skills.map((v) => v.name)}
+        />
 
         <fieldset className="mb-14">
           <label className={`font-semibold`} htmlFor="about">
@@ -130,15 +139,19 @@ const InfoContent = (props: MyInfoProps) => {
           <MainButton
             onClick={async () => {
               const reqData: UserInfoUpdateRequest = {
-                // name: userNameRef.current?.value ?? "",
+                name: userNameRef.current?.value ?? "",
                 phone: userPhoneRef.current?.value ?? "",
                 link: userLinkRef.current?.value ?? "",
+                skill: strSkills,
                 about: userDescRef.current?.value ?? "",
               };
+
+              console.log(reqData);
 
               await api
                 .patch<UserInfoUpdateResponse>(API_UPDATE_USER_INFO, reqData)
                 .then((res) => {
+                  console.log(res);
                   alert("수정되었습니다.");
                 })
                 .catch(console.error);
