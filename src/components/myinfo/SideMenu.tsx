@@ -1,9 +1,10 @@
 import Path from "@/utils/path/routes";
+import API_PATH from "@/utils/path/api";
 import api from "@/libs/axios/api";
 import token from "@/libs/token";
 import { FaUserCircle } from "react-icons/fa";
 import { MdModeEditOutline } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useRef, useState } from "react";
 import { MyInfoProps } from "@/pages/myinfo";
 import {
@@ -11,15 +12,17 @@ import {
   UserInfoImageUpdateResponse,
 } from "@/models/myinfo";
 
-const BeforeBar = "before:content-['|'] before:text-gray-300 before:text-xs before:pr-2";
+const BeforeBar =
+  "before:content-['|'] before:text-gray-300 before:text-xs before:pr-2";
 const BottomLinkStyle = "hover:text-gray-500 transition-all px-1";
-
-const menuList: Array<string> = ["내 정보", "이력서"];
 
 const SideMenu = (props: MyInfoProps) => {
   const navigate = useNavigate();
 
-  const { HOME } = Path;
+  const authToken = token.getToken("token");
+
+  const { HOME, WRITE, RESUME } = Path;
+  const { API_CREATE_PROFILE_IMAGE, API_UPDATE_PROFILE_IMAGE } = API_PATH;
 
   const profileImageRef = useRef<HTMLInputElement>(null);
 
@@ -36,15 +39,15 @@ const SideMenu = (props: MyInfoProps) => {
       formData.append("img", file);
 
       await api
-        .post<UserInfoImageResoponse>("api/users/img", formData, {
+        .post<UserInfoImageResoponse>(API_CREATE_PROFILE_IMAGE, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         })
         .then((res) => {
           api
-            .post<UserInfoImageUpdateResponse>("api/users/img/update", {
-              imageName: "profile",
+            .post<UserInfoImageUpdateResponse>(API_UPDATE_PROFILE_IMAGE, {
+              imageName: "profileImage",
               imagePath: res.data.url,
             })
             .then((updateRes) => {
@@ -103,18 +106,31 @@ const SideMenu = (props: MyInfoProps) => {
       </figure>
 
       <ul className="flex flex-col flex-1 mt-20">
-        {menuList.map((v, idx) => (
-          <li key={idx} className="border-b-[1px]">
+        {/* <li className="border-b-[1px]">
+          <button className="w-full text-left py-3 px-7 text-gray-600 hover:bg-gray-50 transition-all">
+            내 정보
+          </button>
+        </li> */}
+
+        <li className="border-b-[1px]">
+          <button
+            className="w-full text-left py-3 px-7 text-gray-600 hover:bg-gray-50 transition-all"
+            onClick={() => navigate(RESUME)}
+          >
+            이력서 보기
+          </button>
+        </li>
+
+        {authToken && (
+          <li className="border-b-[1px]">
             <button
-              className={`${
-                props.contentType === v && "text-indigo-400"
-              } w-full text-left py-3 px-7 text-gray-600 hover:bg-gray-50 transition-all`}
-              onClick={() => props.setContentType(v)}
+              className="w-full text-left py-3 px-7 text-gray-600 hover:bg-gray-50 transition-all"
+              onClick={() => navigate(WRITE)}
             >
-              {v}
+              이력서 생성
             </button>
           </li>
-        ))}
+        )}
       </ul>
 
       <div className="absolute bottom-4 right-5 text-gray-400 text-sm">

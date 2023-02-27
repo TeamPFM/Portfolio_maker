@@ -16,11 +16,6 @@ const GNB = () => {
 
   const authToken = token.getToken("token");
 
-  const handleToggleMenu = () => {
-    setIsToggleMenu(!isToggleMenu);
-  };
-
-  
   const toggleMenuAnimate = {
     enter: {
       opacity: 1,
@@ -68,7 +63,7 @@ const GNB = () => {
             </button>
 
             <motion.div
-              className={`flex flex-col absolute -bottom-[120px] right-[35px] w-[120px] bg-indigo-100 text-gray-500 rounded-lg rounded-tr-none overflow-hidden transition-all`}
+              className={`flex flex-col absolute top-[100%] right-[35px] w-[120px] bg-indigo-100 text-gray-500 rounded-lg rounded-tr-none overflow-hidden transition-all`}
               initial="exit"
               animate={isToggleMenu ? "enter" : "exit"}
               variants={toggleMenuAnimate}
