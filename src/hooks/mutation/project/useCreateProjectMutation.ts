@@ -10,9 +10,7 @@ interface IProps {
 }
 
 const postFetchProject = async (newData: IProps) => {
-  const res = api.post<ProjectResponse[]>("/api/projects", {
-    project: newData,
-  });
+  const res = api.post<ProjectResponse[]>("/api/projects", newData);
   console.log(res);
   return res;
 };

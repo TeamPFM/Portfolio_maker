@@ -30,9 +30,9 @@ const ResumePage = () => {
   return (
     <div className="h-[calc(100vh_-_80px)] pt-10 relative bg-white">
       <div className="portfolio flex flex-col items-center">
-        <div className="flex flex-col pb-8 gap-12 max-w[640px]">
+        <div className="flex flex-col pb-8 gap-12 w-1/2">
           {/* user's Resume */}
-          <section className="about_me relative">
+          <section className="relative">
             <div className="add-btn absolute top-[7px] right-0 w-[150px]">
               <BasicButton
                 onClick={() => {
@@ -74,7 +74,7 @@ const ResumePage = () => {
             <AboutMe about={userData?.about} />
           </section>
           {/* projects */}
-          <section className="projects relative">
+          <section className="relative">
             <div className="add-btn absolute top-[7px] right-0 w-[150px]">
               <BasicButton
                 onClick={() => {

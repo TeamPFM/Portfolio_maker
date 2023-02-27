@@ -2,11 +2,8 @@ import api from "@/libs/axios/api";
 import ProjectResponse from "@/models/projects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-
 const updateFetchProject = async ({ id: projectId, ...data }: ProjectResponse) => {
-  const res = await api.put<ProjectResponse>(`/api/projects/${projectId}`, {
-    project: data,
-  });
+  const res = await api.put<ProjectResponse>(`/api/projects/${projectId}`, data);
   return res;
 };
 
