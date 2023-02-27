@@ -12,8 +12,20 @@ const API_PATH = {
   // Projects
   API_CREATE_PROJECT: "/api/projects",
   API_GET_PROJECT: "/api/projects?user-id=",
-  API_PUT_PROJECT: "/api/projects/",
-  API_DELETE_PROJECT: "/api/projects/",
+  API_PUT_PROJECT: "/api/projects",
+  API_DELETE_PROJECT: "/api/projects",
+
+  // Board
+  API_CREATE_BOARD: "/api/boards",
+  API_GET_BOARD_PAGINATE: "/api/boards?id=",
+  API_GET_BOARD: "/api/boards",
+  API_UPDATE_BOARD: "/api/boards",
+  API_DELETE_BOARD: "api/boards",
+
+  // Comment
+  API_COMMENT_CREATE: "/api/comments",
+  API_COMMENT_UPDATE: "/api/comments",
+  API_COMMENT_DELETE: "/api/comments",
 };
 
 Object.freeze(API_PATH);
