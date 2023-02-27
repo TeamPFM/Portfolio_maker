@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-main bg-opacity-40">
+    <div className="h-screen bg-main bg-opacity-40">
       <header>{hasNav && <GNB />}</header>
       <main className="w-full h-full pt-20">
         <div className={`w-full h-full`}>{RoutesComponent}</div>
