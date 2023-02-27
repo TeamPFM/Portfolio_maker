@@ -90,10 +90,10 @@ const LoginForm = () => {
             className="w-full !py-4"
             disabled={validPassed}
             onClick={(evt) => {
-              // FIXME 유효성 체크
+              evt.preventDefault();
               // if (!validPassed) {
-              //   evt.preventDefault();
-              //   console.log(validPassed);
+              //   alert("아이디와 비밀번호를 확인해주세요!");
+              //   return;
               // }
               const reqData: LoginRequest = {
                 email: userEmailRef.current?.value ?? "",
@@ -114,6 +114,7 @@ const LoginForm = () => {
 
           <DarkButton
             className="w-full !py-4"
+            type="button"
             onClick={() => {
               navigate(SIGNUP, { replace: true });
             }}

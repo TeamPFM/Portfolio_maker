@@ -154,7 +154,8 @@ const SignupForm = () => {
           !validPassed ? "bg-default" : ""
         }`}
         disabled={validPassed}
-        onClick={() => {
+        onClick={(evt) => {
+          evt.preventDefault();
           // FIXME 유효성 처리
           // if (validPassed) {
           //   console.log("값이 비워져있음");
