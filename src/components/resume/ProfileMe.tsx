@@ -30,7 +30,7 @@ const ProfileMe = ({ users }: IProps) => {
                   <h3 className="text-xl font-bold">{users?.name}</h3>
                 </figcaption>
               </figure>
-              <section className="profile flex-[3] pl-12 py-4">
+              <section className="profile flex-[2] pl-12 py-4">
                 <div className="flex flex-col gap-9">
                   <div>
                     <div>
@@ -45,7 +45,7 @@ const ProfileMe = ({ users }: IProps) => {
                     <div>
                       <span className="text-xl font-semibold">Link</span>
                     </div>
-                    <Link to={users?.link} target="_blank">
+                    <Link to={users?.link} target={users?.link && "_blank"}>
                       <span className="text-xl">{users?.link || "미지정"}</span>
                     </Link>
                   </div>
