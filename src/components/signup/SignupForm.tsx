@@ -3,6 +3,7 @@ import token from "@/libs/token";
 import AuthResponse from "@/models/auth";
 import LoginRequest, { AuthRequest } from "@/models/auth";
 import MainButton from "@/styles/ui-components/styled-button";
+import API_PATH from "@/utils/path/api";
 import Path from "@/utils/path/routes";
 import { useCallback, useRef, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
@@ -11,6 +12,7 @@ const SignupForm = () => {
   const navigate = useNavigate();
 
   const { HOME, LOGIN } = Path;
+  const { API_SIGNUP } = API_PATH;
 
   const userEmailRef = useRef<HTMLInputElement | null>(null);
   const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
@@ -165,7 +167,7 @@ const SignupForm = () => {
           };
 
           api
-            .post<AuthResponse>("/api/users", reqData)
+            .post<AuthResponse>(API_SIGNUP, reqData)
             .then(({ data }) => {
               navigate(LOGIN, { replace: true });
             })

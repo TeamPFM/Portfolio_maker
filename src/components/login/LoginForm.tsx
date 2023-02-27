@@ -11,13 +11,15 @@ import MainButton, { DarkButton } from "@/styles/ui-components/styled-button";
 import token from "@/libs/token";
 import api from "@/libs/axios/api";
 import AuthResponse, { LoginRequest } from "@/models/auth";
+import API_PATH from "@/utils/path/api";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const { SIGNUP, HOME } = Path;
+  const { API_LOGIN } = API_PATH;
 
   const [canSeePW, setCanSeePW] = useState<boolean>(false);
-  
+
   const [validPassed, setValidPassed] = useState<boolean>(false);
 
   const userEmailRef = useRef<HTMLInputElement | null>(null);
@@ -41,9 +43,9 @@ const LoginForm = () => {
               ref={userEmailRef}
               onChange={(evt) => {
                 const emailExp =
-                /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-              const newregisterEmail = evt.target.value;
-              newregisterEmail.replace(emailExp, "");
+                  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+                const newregisterEmail = evt.target.value;
+                newregisterEmail.replace(emailExp, "");
               }}
               required
             />
@@ -99,7 +101,7 @@ const LoginForm = () => {
               };
 
               api
-                .post<AuthResponse>("api/users/login", reqData)
+                .post<AuthResponse>(API_LOGIN, reqData)
                 .then(({ data }) => {
                   token.setToken("token", data.token);
                   navigate(HOME, { replace: true });
