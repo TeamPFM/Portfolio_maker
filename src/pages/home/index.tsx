@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import MainButton from "@/styles/ui-components/styled-button";
 import Path from "@/utils/path/routes";
+import token from "@/libs/token";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { LOGIN } = Path;
+  const authToken = token.getToken("token");
+  const { LOGIN, MYINFO } = Path;
 
   return (
     <div className="overflow-hidden">
@@ -85,7 +87,11 @@ const HomePage = () => {
 
           <MainButton
             className="w-full"
-            onClick={() => navigate(LOGIN, { replace: true })}
+            onClick={() => {
+              authToken
+                ? navigate(MYINFO, { replace: true })
+                : navigate(LOGIN, { replace: true });
+            }}
           >
             포트폴리오 만들기
           </MainButton>
