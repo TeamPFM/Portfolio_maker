@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import MainButton from "@/styles/ui-components/styled-button";
 import Path from "@/utils/path/routes";
 
-
 const HomePage = () => {
   const navigate = useNavigate();
   const { LOGIN } = Path;
