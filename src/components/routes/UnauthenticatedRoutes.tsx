@@ -4,9 +4,10 @@ import ResumePage from "@/pages/resume";
 import SignupPage from "@/pages/signup";
 import Path from "@/utils/path/routes";
 import { Navigate, Route, Routes } from "react-router-dom";
+import BoardPage from "@/pages/board";
 
 const UnauthenticatedRoutes = () => {
-  const { HOME, LOGIN, SIGNUP, WRITE, MYINFO, RESUME, } = Path;
+  const { HOME, LOGIN, SIGNUP, WRITE, MYINFO, RESUME, BOARD } = Path;
 
   return (
     <Routes>
@@ -18,6 +19,7 @@ const UnauthenticatedRoutes = () => {
 
       {/* FIXME 로그인 작업편하게 하려고 */}
       <Route path={RESUME} element={<ResumePage />} />
+      <Route path={BOARD} element={<BoardPage />} />
     </Routes>
   );
 };

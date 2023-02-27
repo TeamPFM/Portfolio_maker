@@ -8,7 +8,7 @@ import token from "@libs/token";
 
 function App() {
   const location = useLocation();
-  const { HOME, LOGIN, SIGNUP, WRITE, MYINFO, RESUME } = Path;
+  const { HOME, LOGIN, SIGNUP, WRITE, MYINFO, RESUME, BOARD } = Path;
 
   const [hasNav, setHasNav] = useState<boolean>(false);
   const [RoutesComponent, setRoutesComponent] =
@@ -29,7 +29,7 @@ function App() {
         ? location.pathname.slice(0, -1)
         : location.pathname;
 
-    const hasNav = [HOME, LOGIN, SIGNUP, WRITE, MYINFO, RESUME].includes(
+    const hasNav = [HOME, LOGIN, SIGNUP, WRITE, MYINFO, RESUME, BOARD].includes(
       pathname
     );
 
