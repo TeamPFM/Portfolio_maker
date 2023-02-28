@@ -1,2 +1,8 @@
-export const BOARD_KEY = "boards" as const;
-export const BOARDPAGE_KEY = "boardpage";
+// Auth
+export const AUTH_KEY = "auth";
+// User
+export const USER_KEY = "user";
+// Project
+export const PROJECT_KEY = "project";
+// Board
+export const BOARD_KEY = "board";
