@@ -19,7 +19,7 @@ const MainButton: FunctionComponent<CommonButtonProps> = (props) => {
   return (
     <ButtonInterface
       {...restProps}
-      className={"bg-main text-main-contra " + className}
+      className={"bg-main text-white " + className}
     >
       {children}
     </ButtonInterface>

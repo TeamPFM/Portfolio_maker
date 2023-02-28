@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import MainButton from "@/styles/ui-components/styled-button";
+import MainButton, { SubButton } from "@/styles/ui-components/styled-button";
 import Path from "@/utils/path/routes";
 import token from "@/libs/token";
 
@@ -85,8 +85,8 @@ const HomePage = () => {
             corporis eaque ducimus.
           </h2>
 
-          <MainButton
-            className="w-full"
+          <SubButton
+            className="w-full !py-4"
             onClick={() => {
               authToken
                 ? navigate(MYINFO, { replace: true })
@@ -94,7 +94,7 @@ const HomePage = () => {
             }}
           >
             포트폴리오 만들기
-          </MainButton>
+          </SubButton>
         </div>
       </motion.main>
     </div>
