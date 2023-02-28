@@ -8,8 +8,8 @@ module.exports = {
     extend: {
       colors: {
         main: "#818CF8",
-        "main-contra": "#1F2836",
-        sub: "#784FCE",
+        "main-contra": "#FFFFFF",
+        sub: "#1F2836",
         "sub-contra": "#FFFFFF",
         // CART
         cart: "#9FC131",

@@ -19,7 +19,7 @@ const MainButton: FunctionComponent<CommonButtonProps> = (props) => {
   return (
     <ButtonInterface
       {...restProps}
-      className={"bg-main text-white " + className}
+      className={"bg-main text-main-contra " + className}
     >
       {children}
     </ButtonInterface>
@@ -34,7 +34,7 @@ export const SubButton: FunctionComponent<CommonButtonProps> = (props) => {
   return (
     <ButtonInterface
       {...restProps}
-      className={"bg-main-contra text-sub-contra " + className}
+      className={"bg-sub text-sub-contra " + className}
     >
       {children}
     </ButtonInterface>
