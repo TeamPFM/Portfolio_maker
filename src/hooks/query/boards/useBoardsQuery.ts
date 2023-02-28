@@ -1,21 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "@/libs/axios/api";
 import BoardResponse from "@/models/board";
-import { BOARD_KEY } from "@/components/constants/key";
+import { BOARDS_KEY } from "@/components/constants/key";
 import API_PATH from "@/utils/path/api";
 
-const { API_GET_BOARD } = API_PATH;
+const { API_GET_BOARD_PAGINATE } = API_PATH;
 // "/api/boards"
 const fetcher = async (page: number) => {
   const { data } = await api.get<{ boards: BoardResponse[] }>(
-    API_GET_BOARD + page
+    API_GET_BOARD_PAGINATE + page
   );
   return data.boards;
 };
 
 const useBoardsQuery = (page: number) => {
   return useQuery({
-    queryKey: [BOARD_KEY, page],
+    queryKey: [BOARDS_KEY, page],
     queryFn: () => fetcher(page),
     enabled: !!page,
   });

@@ -1,6 +1,7 @@
-import useBoardsQuery from "@/hooks/query/boards/useBoardQuery";
+import useBoardsQuery from "@/hooks/query/boards/useBoardsQuery";
 import { SubButton } from "@/styles/ui-components/styled-button";
 import Path from "@/utils/path/routes";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const BoardMain = () => {
@@ -8,8 +9,12 @@ const BoardMain = () => {
 
   const { BOARD_NEW } = Path;
 
-  const { data: boards } = useBoardsQuery(0);
-  const { data: boardpage } = useBoardsQuery(0);
+  const [curNum, setCurNum] = useState<number>(1);
+
+  const { data: boards } = useBoardsQuery(curNum);
+  useEffect(() => {
+    console.log(boards);
+  }, [boards]);
 
   return (
     <section className="w-[80vw] h-full flex flex-col items-center justify-center gap-4">
@@ -34,20 +39,20 @@ const BoardMain = () => {
         </thead>
         {/* 바디 */}
         <tbody className="bg-white">
-          {boards?.map((boardInfo, index) => {
+          {boards?.map((b) => {
             return (
               <tr
                 className="hover:bg-main cursor-pointer"
                 onClick={() => {
-                  navigate("/api/boards/:" + index, { replace: false });
+                  navigate("/api/boards/:" + b.id, { replace: false });
                 }}
               >
-                <td className="p-4 text-sm font-bold">{boardInfo.id ?? 0}</td>
+                <td className="p-4 text-sm font-bold">{b.id}</td>
                 <td className="p-4 text-sm hover:underline hover:underline-offset-4 ">
-                  {boardInfo.title ?? "글 제목"}
+                  {b.title}
                 </td>
-                <td className="p-4 text-sm">{boardInfo.userId ?? "작성자"}</td>
-                <td className="p-4 text-sm">{boardInfo.date ?? "등록일"}</td>
+                <td className="p-4 text-sm">{b.userId}</td>
+                <td className="p-4 text-sm">{b.date}</td>
               </tr>
             );
           })}

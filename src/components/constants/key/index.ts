@@ -6,3 +6,4 @@ export const USER_KEY = "user";
 export const PROJECT_KEY = "project";
 // Board
 export const BOARD_KEY = "board";
+export const BOARDS_KEY = "boards";
