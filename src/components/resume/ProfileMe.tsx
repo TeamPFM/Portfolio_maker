@@ -1,9 +1,14 @@
 import usersResponse from "@/models/users";
+import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
+interface INew extends usersResponse {
+  skills?: {id: number, name: string}[];
+}
+
 interface IProps {
-  users?: usersResponse;
+  users: INew;
 }
 
 const ProfileMe = ({ users }: IProps) => {
@@ -40,6 +45,17 @@ const ProfileMe = ({ users }: IProps) => {
                       <p className="text-xl">Email: {users?.email || "미지정"}</p>
                       <p className="text-xl">Phone: {users?.phone || "미지정"}</p>
                     </div>
+                  </div>
+                  <div className="skills flex flex-wrap gap-3 pb-3">
+                    {
+                      users && (!users.skills?.length && (<div>미지정</div>))
+                    }
+                    {users &&
+                      users.skills?.map(({id, name}) => (
+                        <div key={id} className="flex justify-center items-center px-3 py-2 rounded-md bg-main-contra text-white cursor-pointer">
+                           <span>{name}</span>
+                        </div>
+                      ))}
                   </div>
                   <div>
                     <div>
