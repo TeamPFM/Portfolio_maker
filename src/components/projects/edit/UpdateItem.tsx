@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, MouseEvent, FormEvent } from "react";
+import React, { useState, useEffect, useRef, MouseEvent, FormEvent } from "react";
 import UploadButton from "@/components/projectWrite/base/uploadButton";
 import useUpdateProjectMutation from "@/hooks/mutation/project/useUpdateProjectMutation";
 import ProjectResponse from "@/models/projects";
+import UploadImage from "../uploadImage";
 
 interface IProps {
   project: ProjectResponse;
@@ -9,6 +10,7 @@ interface IProps {
 }
 
 const UpdateItem = ({ setIsEditMode, project }: IProps) => {
+  const [projectImageUrl, setProjectImageUrl] = useState();
   const { id, name, description, link } = project;
   const projectNameRef = useRef<HTMLInputElement | null>(null);
   const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
@@ -63,6 +65,11 @@ const UpdateItem = ({ setIsEditMode, project }: IProps) => {
           ref={projectDescRef}
           required
         />
+      </div>
+      <div className="py-2">
+        <div className="w-[95%]">
+          <UploadImage setProjectImageUrl={setProjectImageUrl} />
+        </div>
       </div>
       <div className="py-2">
         <div className="pb-3">
