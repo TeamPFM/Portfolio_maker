@@ -15,6 +15,8 @@ const UnauthenticatedRoutes = () => {
       <Route path={HOME} element={<HomePage />} />
       <Route path={LOGIN} element={<LoginPage />} />
       <Route path={SIGNUP} element={<SignupPage />} />
+      <Route path={BOARD} element={<BoardPage />} />
+      <Route path={`${BOARD}/:id`} element={<BoardPage />} />
       <Route path="*" element={<Navigate replace to={HOME} />} />
 
       {/* FIXME 로그인 작업편하게 하려고 */}
