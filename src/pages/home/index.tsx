@@ -79,22 +79,23 @@ const HomePage = () => {
           />
         </motion.div>
 
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:max-w-lg bg-indigo-400/25 p-5 rounded-lg">
-          <h2 className="text-3xl py-20 font-semibold text-gray-800 text-center">
+        <div className="w-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:max-w-lg bg-indigo-400/25 p-5 rounded-lg">
+          <h2 className="w-full text-3xl py-20 font-semibold text-gray-800 text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
             corporis eaque ducimus.
           </h2>
-
-          <SubButton
-            className="w-full !py-4"
-            onClick={() => {
-              authToken
-                ? navigate(MYINFO, { replace: true })
-                : navigate(LOGIN, { replace: true });
-            }}
-          >
-            포트폴리오 만들기
-          </SubButton>
+          <div className="w-full flex flex-col">
+            <SubButton
+              className="w-full hover:text-primary !p-4"
+              onClick={() => {
+                authToken
+                  ? navigate(MYINFO, { replace: true })
+                  : navigate(LOGIN, { replace: true });
+              }}
+            >
+              포트폴리오 만들기
+            </SubButton>
+          </div>
         </div>
       </motion.main>
     </div>
