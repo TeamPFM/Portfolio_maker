@@ -1,7 +1,7 @@
+import { PROJECT_KEY } from "@/components/constants/key";
 import api from "@/libs/axios/api";
 import ProjectResponse from "@/models/projects";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 
 interface IProps {
   name: string;
@@ -22,7 +22,7 @@ const useCreateTodoMutation = () => {
       return error;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries<string>(["project"]);
+      queryClient.invalidateQueries<string>([PROJECT_KEY]);
     },
   });
 };
