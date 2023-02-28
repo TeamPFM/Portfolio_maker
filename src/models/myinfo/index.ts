@@ -1,3 +1,8 @@
+export interface SkillsProps {
+  id: number;
+  name: string;
+}
+
 export interface UserInfoGetResponse {
   id: number;
   email: string;
@@ -5,15 +10,17 @@ export interface UserInfoGetResponse {
   about: string;
   link: string;
   phone: string;
+  skills: SkillsProps[];
   imagePath: string;
   imageName: string;
 }
 
 export interface UserInfoUpdateRequest {
-  // name: string;
+  name: string;
   phone: string;
   link: string;
   about: string;
+  skill: string;
 }
 
 export interface UserInfoUpdateResponse {

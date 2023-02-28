@@ -18,6 +18,7 @@ const MyInfoPage = () => {
     about: "",
     link: "",
     phone: "",
+    skills: [{ id: 0, name: "" }],
     imagePath: "",
     imageName: "",
   });
