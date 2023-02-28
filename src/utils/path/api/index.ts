@@ -16,7 +16,7 @@ const API_PATH = {
   API_DELETE_PROJECT: "/api/projects",
 
   // Board
-  API_CREATE_BOARD: "/api/boards",
+  API_CREATE_BOARD: "/api/boards/:",
   API_GET_BOARD_PAGINATE: "/api/boards?id=",
   API_GET_BOARD: "/api/boards",
   API_UPDATE_BOARD: "/api/boards",
