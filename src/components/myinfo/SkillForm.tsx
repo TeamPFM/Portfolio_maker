@@ -67,7 +67,7 @@ const SelectedSkills = (props: IProps) => {
         {skills.map((skill, idx) => (
           <div
             key={idx}
-            className="flex justify-center items-center px-3 py-2 rounded-md bg-main text-white cursor-pointer"
+            className="flex justify-center items-center px-3 py-2 rounded-md bg-main-contra text-white cursor-pointer"
             onClick={() => {
               setSkills(skills.filter((v) => v !== skill));
             }}

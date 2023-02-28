@@ -2,7 +2,7 @@ import Path from "@/utils/path/routes";
 import API_PATH from "@/utils/path/api";
 import token from "@/libs/token";
 import api from "@/libs/axios/api";
-import MainButton from "@/styles/ui-components/styled-button";
+import MainButton, { SubButton } from "@/styles/ui-components/styled-button";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserInfoUpdateRequest, UserInfoUpdateResponse } from "@/models/myinfo";
@@ -124,7 +124,7 @@ const InfoContent = (props: MyInfoProps) => {
         </fieldset>
 
         <div className="flex justify-end gap-5">
-          <MainButton
+          <SubButton
             onClick={() => {
               if (confirm("정말로 탈퇴 하시겠습니까?????? 정말로??")) {
                 alert("탈퇴 되었습니다.");
@@ -134,9 +134,9 @@ const InfoContent = (props: MyInfoProps) => {
             }}
           >
             회원 탈퇴
-          </MainButton>
+          </SubButton>
 
-          <MainButton
+          <SubButton
             onClick={async () => {
               const reqData: UserInfoUpdateRequest = {
                 name: userNameRef.current?.value ?? "",
@@ -158,7 +158,7 @@ const InfoContent = (props: MyInfoProps) => {
             }}
           >
             수정하기
-          </MainButton>
+          </SubButton>
         </div>
       </div>
     </div>
