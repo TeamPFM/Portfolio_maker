@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import {
   BoardInfoGetResponse,
-  CommentProps,
   StatusResponse,
   CommentCreateRequest,
 } from "@/models/board/detail";
@@ -21,7 +20,6 @@ const BoardDetail = (props: { boardId: string }) => {
 
   const commentCreateRef = useRef<HTMLInputElement | null>(null);
   const [userId, setUserId] = useState<string | number>("");
-  const [userName, setUserName] = useState<string>("");
   const [boardInfo, setBoardInfo] = useState<BoardInfoGetResponse>({
     id: 0,
     title: "",
@@ -59,10 +57,7 @@ const BoardDetail = (props: { boardId: string }) => {
   const getUserInfo = async () => {
     await api
       .get<UserInfoGetResponse>(API_GET_USER_INFO)
-      .then((res) => {
-        setUserId(res.data.id);
-        setUserName(res.data.name);
-      })
+      .then((res) => setUserId(res.data.id))
       .catch((error) => console.log(error));
   };
 
@@ -122,8 +117,7 @@ const BoardDetail = (props: { boardId: string }) => {
               boardId={props.boardId}
               content={comment.content}
               userId={userId}
-              userName={userName}
-              commentUserId={comment.users.id}
+              commentUserInfo={comment.users}
             />
           ))}
         </ul>
