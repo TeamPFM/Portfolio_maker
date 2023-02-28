@@ -1,4 +1,4 @@
-import { BasicButton } from '@/styles/ui-components/styled-button';
+import { SubButton } from '@/styles/ui-components/styled-button';
 import { MouseEvent } from 'react';
 
 
@@ -9,12 +9,12 @@ interface IProps {
 }
 
 const classNameObj = {
-  저장: '!h-full !bg-blue-400 !text-white !border-none',
+  저장: '',
   취소: '!border-gray-300 !bg-white !text-zinc-800'
 };
  
 const UploadButton = ({ btnType, type = 'button', onClick }: IProps) => {
-  return <>{<BasicButton type={type} onClick={onClick} className={`w-full ${classNameObj[btnType]}`}>{btnType}</BasicButton>}</>;
+  return <>{<SubButton type={type} onClick={onClick} className={`w-full font-bold ${classNameObj[btnType]}`}>{btnType}</SubButton>}</>;
 };
 
 export default UploadButton;

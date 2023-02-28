@@ -6,7 +6,11 @@ import { useParams } from "react-router-dom";
 const BoardPage = () => {
   const { id } = useParams();
 
-  return <div>{id ? <BoardDetail boardId={id} /> : <BoardMain />}</div>;
+  return (
+    <div className="w-full h-full min-h-screen flex flex-col items-center justify-start pt-8">
+      {id ? <BoardDetail boardId={id} /> : <BoardMain />}
+    </div>
+  );
 };
 
 export default BoardPage;

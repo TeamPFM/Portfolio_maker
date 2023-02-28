@@ -79,8 +79,8 @@ const HomePage = () => {
           />
         </motion.div>
 
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full md:max-w-lg bg-indigo-400/25 p-5 rounded-lg">
-          <h2 className="text-3xl py-20 font-semibold text-gray-800 text-center">
+        <div className="w-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:max-w-lg bg-indigo-400/25 p-5 rounded-lg">
+          <h2 className="w-full text-3xl py-20 font-semibold text-gray-800 text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
             corporis eaque ducimus.
           </h2>

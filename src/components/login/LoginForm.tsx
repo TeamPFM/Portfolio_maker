@@ -26,12 +26,12 @@ const LoginForm = () => {
   const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
 
   return (
-    <section className="w-[80vw] flex flex-col gap-8 items-center justify-center bg-white py-20 px-8 border rounded-xl shadow-md">
+    <section className="w-[80vw] flex flex-col gap-8 items-center justify-center bg-white p-8 border rounded-xl shadow-md">
       <div className="flex flex-col gap-2 text-4xl px-12 py-6 rounded-full font-bold">
         <h1 className="">PortFolio Makers</h1>
       </div>
       {/* 입력 폼 */}
-      <form className="w-full flex flex-col gap-4 text-lg">
+      <form className="w-full flex flex-col gap-12 text-lg">
         <div className="flex flex-col gap-2">
           {/* 아이디 */}
           <fieldset className="w-full flex flex-col gap-2">
