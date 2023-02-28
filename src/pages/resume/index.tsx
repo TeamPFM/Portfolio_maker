@@ -50,7 +50,7 @@ const ResumePage = () => {
                 내정보 관리
               </span>
             </div>
-            <ProfileMe users={userData} />
+            {userData && <ProfileMe users={userData} />}
           </section>
           {/* about_me */}
           <section className="relative">

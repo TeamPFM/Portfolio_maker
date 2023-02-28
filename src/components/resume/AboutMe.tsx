@@ -12,7 +12,7 @@ const AboutMe = ({ about }: IProps) => {
       <div className="border-l-4 border-l-slate-400 border-b border-b-gray-200 px-3 py-2">
         <span className="text-xl font-semibold">About me</span>
       </div>
-      {!about ? (
+      {about ? (
         <div className="flex pt-8 w-full">
           <div className="flex relative py-8 px-8 w-full bg-white shadow-lg rounded-lg overflow-y-auto">
             <p className="text-xl font-sans">{about}</p>
