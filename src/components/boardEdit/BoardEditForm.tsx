@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useLayoutEffect, FormEvent, MouseEvent } from "react";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import Path from "@/utils/path/routes";
-import UploadButton from "../write/base/uploadButton";
+import UploadButton from "../projectWrite/base/uploadButton";
 import useBoardFindOneQuery from "@/hooks/query/boards/useBoardFindOneQuery";
 import useCreateBoardsMutation from "@/hooks/mutation/boards/useCreateBoardsMutation";
 import useUpdateBoardsMutation from "@/hooks/mutation/boards/useUpdateBoardsMutation";

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, MouseEvent, FormEvent } from "react";
-import UploadButton from "@/components/write/base/uploadButton";
+import UploadButton from "@/components/projectWrite/base/uploadButton";
 import useUpdateProjectMutation from "@/hooks/mutation/project/useUpdateProjectMutation";
 import ProjectResponse from "@/models/projects";
 

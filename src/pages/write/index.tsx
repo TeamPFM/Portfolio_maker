@@ -1,4 +1,4 @@
-import WriteForm from '@/components/write/WriteForm';
+import WriteForm from '@/components/projectWrite/WriteForm';
 
 const WritePage = () => {
   return <WriteForm />;

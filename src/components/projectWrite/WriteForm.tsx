@@ -29,15 +29,15 @@ const WriteForm = () => {
   };
 
   return (
-    <section className="w-full flex flex-col pt-[4px] pb-[7px]">
+    <section className="w-full pb-[7px]">
       <div className="w-auto flex justify-center">
-        <div className="max-w-3xl py-[28px] w-7/12">
-          <div className="p-5 gap-5 w-full flex flex-col bg-white shadow-lg rounded-lg">
-            <header className="py-4">
-              <span className="text-[20px] font-bold">프로젝트 등록</span>
-            </header>
+        <div className="max-w-[40rem] py-10 w-7/12">
+          <header className="py-3 px-5 w-full bg-gray-800 text-white">
+            <span className="text-[20px] font-bold">프로젝트 등록</span>
+          </header>
+          <div className="py-3 px-5 gap-5 w-full bg-white shadow-lg rounded-b-lg">
             <div className="write-form">
-              <form className="flex flex-col gap-3" onSubmit={onSubmit}>
+              <form className="flex-col gap-3" onSubmit={onSubmit}>
                 <div className="project-info w-full pb-5 gap-3 flex">
                   <div className="flex-1 project-title">
                     <p
@@ -71,7 +71,7 @@ const WriteForm = () => {
                   />
                 </div>
                 <div>
-                    <UploadImage setProjectImageUrl={setProjectImageUrl}/>
+                  <UploadImage setProjectImageUrl={setProjectImageUrl} />
                 </div>
                 <div>
                   <p className={`pb-2 font-bold`}>링크</p>
