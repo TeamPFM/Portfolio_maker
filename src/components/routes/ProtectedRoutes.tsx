@@ -15,6 +15,7 @@ const ProtectedRoutes = () => {
       <Route path={MYINFO} element={<MyInfoPage />} />
       <Route path={WRITE} element={<WritePage />} />
       <Route path={BOARD} element={<BoardPage />} />
+      <Route path={`${BOARD}/:id`} element={<BoardPage />} />
       {/* Resume CRUD */}
       <Route path={RESUME} element={<ResumePage />} />
       {/*  */}
