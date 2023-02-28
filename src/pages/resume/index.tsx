@@ -13,7 +13,11 @@ const ResumePage = () => {
   const navigate = useNavigate();
   const { WRITE, MYINFO } = Path;
 
-  const { data: userData, isError: userIsError, isLoading: userIsLoading } = useUsersQuery();
+  const {
+    data: userData,
+    isError: userIsError,
+    isLoading: userIsLoading,
+  } = useUsersQuery();
 
   const {
     data: projectsData,
@@ -28,7 +32,7 @@ const ResumePage = () => {
     return <div className="flex justify-center py-[10%]">불러오는 중...</div>;
   }
   return (
-    <div className="h-[calc(100vh_-_80px)] pt-10 relative bg-white">
+    <div className="h-full pt-10 relative">
       <div className="portfolio flex flex-col items-center">
         <div className="flex flex-col pb-8 gap-12 w-1/2">
           {/* user's Resume */}
