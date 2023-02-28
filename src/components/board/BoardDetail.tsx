@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { SubButton } from "@/styles/ui-components/styled-button";
 import Path from "@/utils/path/routes";
 import API_PATH from "@/utils/path/api";
@@ -21,6 +21,7 @@ const BoardDetail = (props: { boardId: string }) => {
 
   const commentCreateRef = useRef<HTMLInputElement | null>(null);
   const [userId, setUserId] = useState<string | number>("");
+  const [userName, setUserName] = useState<string>("");
   const [boardInfo, setBoardInfo] = useState<BoardInfoGetResponse>({
     id: 0,
     title: "",
@@ -58,7 +59,10 @@ const BoardDetail = (props: { boardId: string }) => {
   const getUserInfo = async () => {
     await api
       .get<UserInfoGetResponse>(API_GET_USER_INFO)
-      .then((res) => setUserId(res.data.id))
+      .then((res) => {
+        setUserId(res.data.id);
+        setUserName(res.data.name);
+      })
       .catch((error) => console.log(error));
   };
 
@@ -70,14 +74,14 @@ const BoardDetail = (props: { boardId: string }) => {
       >
         <HiOutlineArrowLeft className="text-3xl pr-3" /> 목록으로
       </SubButton>
-
+      {/* FIXME 게시판 타이틀/내용 */}
       <div className="h-[500px] w-full bg-sub text-center rounded">
         <h2>{boardInfo.title}</h2>
 
         <p>{boardInfo.content}</p>
       </div>
 
-      <div className="flex flex-col w-full mt-8">
+      <section className="flex flex-col w-full mt-8">
         <div className="flex justify-between">
           <input
             type="text"
@@ -118,38 +122,12 @@ const BoardDetail = (props: { boardId: string }) => {
               boardId={props.boardId}
               content={comment.content}
               userId={userId}
+              userName={userName}
               commentUserId={comment.users.id}
             />
-
-            // <li
-            //   key={comment.id}
-            //   className={`flex justify-between p-2 ${idx && "border-t"}`}
-            // >
-            //   {isCommentEdit ? (
-            //     <input
-            //       className="border w-full rounded-sm focus:outline-none focus:border-main p-2"
-            //       type="text"
-            //       defaultValue={comment.content}
-            //     />
-            //   ) : (
-            //     <p className="pr-4 p-2">{comment.content}</p>
-            //   )}
-
-            //   <div className="flex items-center">
-            //     <button
-            //       className="flex justify-center items-center text-2xl text-main"
-            //       onClick={() => setIsCommentEdit(!isCommentEdit)}
-            //     >
-            //       <RiEditBoxLine />
-            //     </button>
-            //     <button className="flex justify-center items-center text-2xl text-red-400 ml-4">
-            //       <RiDeleteBin5Line />
-            //     </button>
-            //   </div>
-            // </li>
           ))}
         </ul>
-      </div>
+      </section>
     </div>
   );
 };

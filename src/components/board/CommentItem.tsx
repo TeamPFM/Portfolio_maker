@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from "react";
+import React, { useState } from "react";
 import { RiDeleteBin5Line, RiEditBoxLine } from "react-icons/ri";
 import API_PATH from "@/utils/path/api";
 import api from "@/libs/axios/api";
@@ -11,6 +11,7 @@ interface CommentProps {
   idx: number;
   content: string;
   userId: string | number;
+  userName: string;
   commentUserId: number;
   boardId: string | number;
 }
@@ -53,38 +54,43 @@ const CommentItem = (props: CommentProps) => {
   };
 
   return (
-    <li
-      key={props.id}
-      className={`flex justify-between p-2 ${props.idx && "border-t"}`}
-    >
-      {isCommentEdit ? (
-        <input
-          className="border w-full rounded-sm focus:outline-none focus:border-main p-2"
-          type="text"
-          defaultValue={commentContent}
-          onChange={(e) => setCommentContent(e.target.value)}
-          onKeyDown={handleOnKeyDown}
-        />
-      ) : (
-        <p className="pr-4 p-2">{commentContent}</p>
-      )}
+    <li key={props.id} className={`${props.idx && "border-t"}`}>
+      <div className="flex justify-between items-center">
+        <span className="px-2 py-1 text-lg text-semibold">
+          {props.userName}
+        </span>
+      </div>
 
-      {props.userId === props.commentUserId && (
-        <div className="flex items-center">
-          <button
-            className="flex justify-center items-center text-2xl text-main"
-            onClick={handleUpdateComment}
-          >
-            <RiEditBoxLine />
-          </button>
-          <button
-            className="flex justify-center items-center text-2xl text-red-400 ml-4"
-            onClick={handleDeleteComment}
-          >
-            <RiDeleteBin5Line />
-          </button>
-        </div>
-      )}
+      <div className="flex justify-between p-2">
+        {isCommentEdit ? (
+          <input
+            className="border w-full rounded-sm focus:outline-none focus:border-main p-2"
+            type="text"
+            defaultValue={commentContent}
+            onChange={(e) => setCommentContent(e.target.value)}
+            onKeyDown={handleOnKeyDown}
+          />
+        ) : (
+          <p className="pr-4 p-2">{commentContent}</p>
+        )}
+
+        {props.userId === props.commentUserId && (
+          <div className="flex items-center">
+            <button
+              className="flex justify-center items-center text-2xl text-main"
+              onClick={handleUpdateComment}
+            >
+              <RiEditBoxLine />
+            </button>
+            <button
+              className="flex justify-center items-center text-2xl text-red-400 ml-4"
+              onClick={handleDeleteComment}
+            >
+              <RiDeleteBin5Line />
+            </button>
+          </div>
+        )}
+      </div>
     </li>
   );
 };

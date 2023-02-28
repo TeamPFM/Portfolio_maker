@@ -6,64 +6,7 @@ import { useNavigate } from "react-router-dom";
 const BoardMain = () => {
   const navigate = useNavigate();
 
-  const { BOARD } = Path;
-
-  const boardInfoList = [
-    {
-      id: 0,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-    {
-      id: 1,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-    {
-      id: 2,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-    {
-      id: 3,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-    {
-      id: 4,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-    {
-      id: 5,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-    {
-      id: 6,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-    {
-      id: 7,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-    {
-      id: 8,
-      title: "제목입니다",
-      userId: "노기훈",
-      date: "2030-01-10",
-    },
-  ];
+  const { BOARD_NEW } = Path;
 
   const { data: boards } = useBoardsQuery(0);
   const { data: boardpage } = useBoardsQuery(0);
@@ -91,7 +34,7 @@ const BoardMain = () => {
         </thead>
         {/* 바디 */}
         <tbody className="bg-white">
-          {boardInfoList.map((boardInfo, index) => {
+          {boards?.map((boardInfo, index) => {
             return (
               <tr
                 className="hover:bg-main cursor-pointer"
@@ -99,12 +42,12 @@ const BoardMain = () => {
                   navigate("/api/boards/:" + index, { replace: false });
                 }}
               >
-                <td className="p-4 text-sm font-bold">{boardInfo.id}</td>
+                <td className="p-4 text-sm font-bold">{boardInfo.id ?? 0}</td>
                 <td className="p-4 text-sm hover:underline hover:underline-offset-4 ">
-                  {boardInfo.title}
+                  {boardInfo.title ?? "글 제목"}
                 </td>
-                <td className="p-4 text-sm">{boardInfo.userId}</td>
-                <td className="p-4 text-sm">{boardInfo.date}</td>
+                <td className="p-4 text-sm">{boardInfo.userId ?? "작성자"}</td>
+                <td className="p-4 text-sm">{boardInfo.date ?? "등록일"}</td>
               </tr>
             );
           })}
@@ -115,7 +58,7 @@ const BoardMain = () => {
         <SubButton
           className="px-6 hover:text-primary"
           onClick={() => {
-            navigate(BOARD, { replace: false });
+            navigate(BOARD_NEW, { replace: false });
           }}
         >
           글쓰기
