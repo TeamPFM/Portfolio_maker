@@ -1,11 +1,10 @@
-import api from "@/libs/axios/api";
-import token from "@/libs/token";
-import AuthResponse from "@/models/auth";
-import LoginRequest, { AuthRequest } from "@/models/auth";
+import { useUserSignupMutation } from "@/hooks/mutation/auth/useAuthMutation";
+
+import { AuthRequest } from "@/models/auth";
 import MainButton from "@/styles/ui-components/styled-button";
 import API_PATH from "@/utils/path/api";
 import Path from "@/utils/path/routes";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router";
 const SignupForm = () => {
@@ -24,6 +23,8 @@ const SignupForm = () => {
 
   // 가입신청 공백체크
   const [validPassed, setValidPassed] = useState<boolean>(false);
+
+  const mutation = useUserSignupMutation();
 
   return (
     <section className="flex flex-col w-[80vw] gap-8 items-center justify-center bg-white py-4 px-6 border rounded-xl shadow-md">
@@ -167,12 +168,8 @@ const SignupForm = () => {
             password: userPasswordFirmFormRef.current?.value ?? "",
           };
 
-          api
-            .post<AuthResponse>(API_SIGNUP, reqData)
-            .then(({ data }) => {
-              navigate(LOGIN, { replace: true });
-            })
-            .catch(console.error);
+          mutation.mutate(reqData);
+          navigate(LOGIN, { replace: true });
         }}
       >
         가입신청

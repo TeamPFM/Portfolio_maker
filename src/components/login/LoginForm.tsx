@@ -1,17 +1,12 @@
 import Path from "@/utils/path/routes";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  AiFillEye,
-  AiFillEyeInvisible,
-  AiFillTrademarkCircle,
-} from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import MainButton, { DarkButton } from "@/styles/ui-components/styled-button";
 
-import token from "@/libs/token";
-import api from "@/libs/axios/api";
-import AuthResponse, { LoginRequest } from "@/models/auth";
+import { LoginRequest } from "@/models/auth";
 import API_PATH from "@/utils/path/api";
+import { useUserLoginMutation } from "@/hooks/mutation/auth/useAuthMutation";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -25,6 +20,7 @@ const LoginForm = () => {
   const userEmailRef = useRef<HTMLInputElement | null>(null);
   const userPasswordFormRef = useRef<HTMLInputElement | null>(null);
 
+  const mutation = useUserLoginMutation();
   return (
     <section className="w-[80vw] flex flex-col gap-8 items-center justify-center bg-white p-8 border rounded-xl shadow-md">
       <div className="flex flex-col gap-2 text-4xl px-12 py-6 rounded-full font-bold">
@@ -99,6 +95,8 @@ const LoginForm = () => {
                 email: userEmailRef.current?.value ?? "",
                 password: userPasswordFormRef.current?.value ?? "",
               };
+              mutation.mutate(reqData);
+              navigate(HOME, { replace: true });
             }}
           >
             로그인
