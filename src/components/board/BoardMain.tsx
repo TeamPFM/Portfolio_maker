@@ -7,14 +7,10 @@ import { useNavigate } from "react-router-dom";
 const BoardMain = () => {
   const navigate = useNavigate();
 
-  const { BOARD_NEW } = Path;
+  const { BOARD_NEW, BOARD } = Path;
 
   const [curNum, setCurNum] = useState<number>(1);
-
   const { data: boards } = useBoardsQuery(curNum);
-  useEffect(() => {
-    console.log(boards);
-  }, [boards]);
 
   return (
     <section className="w-[80vw] h-full flex flex-col items-center justify-center gap-4">
@@ -39,20 +35,21 @@ const BoardMain = () => {
         </thead>
         {/* 바디 */}
         <tbody className="bg-white">
-          {boards?.map((b) => {
+          {boards?.map((b, index) => {
             return (
               <tr
+                key={index}
                 className="hover:bg-main cursor-pointer"
                 onClick={() => {
-                  navigate("/api/boards/:" + b.id, { replace: false });
+                  navigate(`${BOARD}/${b.id}`, { replace: false });
                 }}
               >
                 <td className="p-4 text-sm font-bold">{b.id}</td>
                 <td className="p-4 text-sm hover:underline hover:underline-offset-4 ">
                   {b.title}
                 </td>
-                <td className="p-4 text-sm">{b.userId}</td>
-                <td className="p-4 text-sm">{b.date}</td>
+                <td className="p-4 text-sm">{b.users.name}</td>
+                <td className="p-4 text-sm">{b.createdAt}</td>
               </tr>
             );
           })}
@@ -73,8 +70,30 @@ const BoardMain = () => {
       {/* pagenate */}
       <div className="flex flex-col items-end">
         <div className="items-center">
-          <SubButton className="!px-4 hover:text-primary">1</SubButton>
-          <SubButton className="!px-4 hover:text-primary">2</SubButton>
+          <SubButton
+            className="!px-4 hover:text-primary"
+            onClick={() => setCurNum(1)}
+          >
+            1
+          </SubButton>
+          <SubButton
+            className="!px-4 hover:text-primary"
+            onClick={() => setCurNum(2)}
+          >
+            2
+          </SubButton>
+          <SubButton
+            className="!px-4 hover:text-primary"
+            onClick={() => setCurNum(2)}
+          >
+            3
+          </SubButton>
+          <SubButton
+            className="!px-4 hover:text-primary"
+            onClick={() => setCurNum(1)}
+          >
+            ...
+          </SubButton>
         </div>
       </div>
     </section>

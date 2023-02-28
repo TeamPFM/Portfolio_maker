@@ -7,10 +7,10 @@ import API_PATH from "@/utils/path/api";
 const { API_GET_BOARD_PAGINATE } = API_PATH;
 // "/api/boards"
 const fetcher = async (page: number) => {
-  const { data } = await api.get<{ boards: BoardResponse[] }>(
+  const { data } = await api.get<BoardResponse[]>(
     API_GET_BOARD_PAGINATE + page
   );
-  return data.boards;
+  return data;
 };
 
 const useBoardsQuery = (page: number) => {

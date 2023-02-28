@@ -4,15 +4,18 @@ export interface SkillsProps {
 }
 
 export interface UserInfoGetResponse {
-  id: number;
-  email: string;
-  name: string;
   about: string;
-  link: string;
-  phone: string;
-  skills: SkillsProps[];
-  imagePath: string;
+  createdAt?: string;
+  deletedAt?: string;
+  email: string;
+  id: number;
   imageName: string;
+  imagePath: string;
+  link: string;
+  name: string;
+  password: string;
+  phone: string;
+  updatedAt: string;
 }
 
 export interface UserInfoUpdateRequest {
