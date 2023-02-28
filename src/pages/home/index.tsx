@@ -84,18 +84,17 @@ const HomePage = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
             corporis eaque ducimus.
           </h2>
-          <div className="w-full flex flex-col">
-            <SubButton
-              className="w-full hover:text-primary !p-4"
-              onClick={() => {
-                authToken
-                  ? navigate(MYINFO, { replace: true })
-                  : navigate(LOGIN, { replace: true });
-              }}
-            >
-              포트폴리오 만들기
-            </SubButton>
-          </div>
+
+          <SubButton
+            className="w-full"
+            onClick={() => {
+              authToken
+                ? navigate(MYINFO, { replace: true })
+                : navigate(LOGIN, { replace: true });
+            }}
+          >
+            포트폴리오 만들기
+          </SubButton>
         </div>
       </motion.main>
     </div>
