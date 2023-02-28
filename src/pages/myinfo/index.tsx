@@ -37,7 +37,7 @@ const MyInfoPage = () => {
   };
 
   return (
-    <div className="w-full h-full p-5 bg-gray-50">
+    <div className="w-full h-full p-5">
       <div className="flex w-full h-full max-w-[1400px] mx-auto">
         <SideMenu userInfo={userInfo} setUserInfo={setUserInfo} />
         <InfoContent userInfo={userInfo} setUserInfo={setUserInfo} />

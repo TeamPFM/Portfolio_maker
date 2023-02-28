@@ -25,7 +25,7 @@ const InfoContent = (props: MyInfoProps) => {
 
   return (
     <div className="flex-auto relative rounded-xl bg-white shadow-lg overflow-auto">
-      <h2 className="text-xl sticky top-0 text-center py-3 bg-indigo-400 text-white">
+      <h2 className="text-xl sticky top-0 text-center py-3 bg-gray-800 text-white">
         내 정보
       </h2>
 
