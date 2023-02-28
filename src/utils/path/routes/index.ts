@@ -6,6 +6,8 @@ const Path = {
   WRITE: "/write",
   RESUME: "/resume",
   BOARD: "/board",
+  BOARD_NEW: "/board-new",
+  BOARD_UPDATE: "/board-update",
 };
 
 Object.freeze(Path);
