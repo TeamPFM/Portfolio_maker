@@ -19,7 +19,7 @@ const UnauthenticatedRoutes = () => {
 
       {/* FIXME 로그인 작업편하게 하려고 */}
       <Route path={RESUME} element={<ResumePage />} />
-      <Route path={BOARD} element={<BoardPage />} />
+      <Route path={`${BOARD}/:id`} element={<BoardPage />} />
     </Routes>
   );
 };
