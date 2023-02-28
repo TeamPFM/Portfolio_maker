@@ -99,14 +99,6 @@ const LoginForm = () => {
                 email: userEmailRef.current?.value ?? "",
                 password: userPasswordFormRef.current?.value ?? "",
               };
-
-              api
-                .post<AuthResponse>(API_LOGIN, reqData)
-                .then(({ data }) => {
-                  token.setToken("token", data.token);
-                  navigate(HOME, { replace: true });
-                })
-                .catch(console.error);
             }}
           >
             로그인
