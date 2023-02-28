@@ -113,7 +113,7 @@ const InfoContent = (props: MyInfoProps) => {
             내 소개
           </label>
           <textarea
-            className="border w-full h-[400px] mt-3 resize-none rounded-sm py-3 px-4 focus:outline-none focus:border-main"
+            className="border w-full h-[200px] mt-3 resize-none rounded-sm py-3 px-4 focus:outline-none focus:border-main"
             name="about"
             id="about"
             placeholder="나에 대해 설명해주세요."
@@ -125,6 +125,7 @@ const InfoContent = (props: MyInfoProps) => {
 
         <div className="flex justify-end gap-5">
           <SubButton
+            className="w-1/2 py-3"
             onClick={() => {
               if (confirm("정말로 탈퇴 하시겠습니까?????? 정말로??")) {
                 alert("탈퇴 되었습니다.");
@@ -137,6 +138,7 @@ const InfoContent = (props: MyInfoProps) => {
           </SubButton>
 
           <SubButton
+            className="w-1/2 py-3"
             onClick={async () => {
               const reqData: UserInfoUpdateRequest = {
                 name: userNameRef.current?.value ?? "",
