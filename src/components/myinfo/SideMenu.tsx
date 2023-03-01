@@ -109,14 +109,13 @@ const SideMenu = (props: MyInfoProps) => {
         {/* <li className="border-b-[1px]">
           <button className="w-full text-left py-3 px-7 text-gray-600 hover:bg-gray-50 transition-all">
             내 정보
-            // http://localhost:3001/info/resume/2 || /info/resume/:id
           </button>
         </li> */}
 
         <li className="border-b-[1px]">
           <button
             className="w-full text-left py-3 px-7 text-gray-600 hover:bg-gray-50 transition-all"
-            onClick={() => navigate(RESUME.replace(':id', `${props.userInfo.id}`))}
+            onClick={() => navigate(RESUME)}
           >
             이력서 보기
           </button>
