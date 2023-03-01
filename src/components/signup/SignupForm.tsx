@@ -143,6 +143,7 @@ const SignupForm = () => {
             type="text"
             name="fullname"
             ref={userFullnameRef}
+            placeholder="한글만 입력 가능합니다."
             onChange={(evt) => {
               evt.target.value = evt.target.value.replace(/[^ㄱ-ㅎ가-힣]/g, "");
             }}
