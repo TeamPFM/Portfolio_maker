@@ -43,7 +43,7 @@ const ResumeMain = () => {
           </section>
           {/* projects */}
           <section className="relative">
-            <PlusBtn className="w-[165px] top-[12px]" path={WRITE} text="프로젝트 추가" />
+            <PlusBtn className="top-[12px]" path={WRITE} text="프로젝트 추가" />
             {projectsData && <ProjectInfo projects={projectsData} />}
           </section>
         </div>

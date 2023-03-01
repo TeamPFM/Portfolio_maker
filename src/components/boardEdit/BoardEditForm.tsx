@@ -76,7 +76,7 @@ const BoardWriteForm = () => {
     <section className="w-full pb-[7px]">
       <div className="w-auto flex justify-center">
         <div className="max-w-[40rem] py-10 w-7/12">
-          <header className="py-3 px-5 w-full bg-gray-800 text-white">
+          <header className="py-3 px-5 w-full bg-gray-800 text-white rounded-t-lg">
             <span className="text-[20px] font-bold">{title}</span>
           </header>
           <div className="py-3 px-5 gap-5 w-full bg-white shadow-lg rounded-b-lg">
