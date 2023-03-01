@@ -17,6 +17,7 @@ export interface BoardInfoGetResponse {
   updatedAt: string;
   deletedAt: string | null;
   comments: CommentProps[];
+  users: UserInfoGetResponse;
 }
 
 export interface CommentCreateRequest {
