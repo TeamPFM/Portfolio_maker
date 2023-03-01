@@ -105,7 +105,7 @@ const InfoContent = (props: MyInfoProps) => {
         <SkillForm
           strSkills={strSkills}
           setStrSkills={setStrSkills}
-          initSkills={props.userInfo.skills.map((v) => v.name)}
+          initSkills={(props.userInfo.skills ?? []).map((v) => v.name)}
         />
 
         <fieldset className="mb-14">

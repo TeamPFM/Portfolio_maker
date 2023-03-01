@@ -15,7 +15,7 @@ export interface UserInfoGetResponse {
   name: string;
   phone: string;
   updatedAt?: string;
-  skills?: { id: number, name: string }[]
+  skills?: SkillsProps[];
 }
 
 export interface UserInfoUpdateRequest {
