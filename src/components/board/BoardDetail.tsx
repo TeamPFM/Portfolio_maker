@@ -3,9 +3,13 @@ import { SubButton } from "@/styles/ui-components/styled-button";
 import Path from "@/utils/path/routes";
 import API_PATH from "@/utils/path/api";
 import api from "@/libs/axios/api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { BoardInfoGetResponse, StatusResponse, CommentCreateRequest } from "@/models/board/detail";
+import {
+  BoardInfoGetResponse,
+  StatusResponse,
+  CommentCreateRequest,
+} from "@/models/board/detail";
 import CommentItem from "./CommentItem";
 import { UserInfoGetResponse } from "@/models/myinfo";
 import useDeleteBoardsMutation from "@/hooks/mutation/boards/useDeleteBoardsMutation";
@@ -13,7 +17,12 @@ import useDeleteBoardsMutation from "@/hooks/mutation/boards/useDeleteBoardsMuta
 const BoardDetail = (props: { boardId: string }) => {
   const navigate = useNavigate();
   const { BOARD, BOARD_UPDATE } = Path;
-  const { API_GET_USER_INFO, API_GET_BOARD, API_COMMENT_CREATE, API_DELETE_BOARD } = API_PATH;
+  const {
+    API_GET_USER_INFO,
+    API_GET_BOARD,
+    API_COMMENT_CREATE,
+    API_DELETE_BOARD,
+  } = API_PATH;
 
   const commentCreateRef = useRef<HTMLInputElement | null>(null);
   const [userId, setUserId] = useState<string | number>("");
@@ -78,7 +87,7 @@ const BoardDetail = (props: { boardId: string }) => {
   };
 
   return (
-    <div className="px-5 w-full max-w-[1000px] m-auto">
+    <div className="px-5 w-full max-w-[1000px]">
       <div className="flex justify-between items-center">
         <SubButton
           className="flex items-center font-semibold text-white border-none mb-5"
@@ -103,7 +112,7 @@ const BoardDetail = (props: { boardId: string }) => {
                 if (boardInfo && confirm("정말로 삭제 하시겠습니까?")) {
                   mutation.mutate(boardInfo.id);
                   navigate(BOARD, { replace: true });
-                  location.reload()
+                  location.reload();
                 }
               }}
             >
@@ -114,16 +123,40 @@ const BoardDetail = (props: { boardId: string }) => {
       </div>
 
       <div className="h-[500px] w-full bg-main-contra text-center rounded-md">
-        <div className="flex flex-col items-start p-2 border-b bg-gray-100 rounded-t-md">
-          <h2 className="text-lg font-semibold py-3">{boardInfo.title}</h2>
-          <small className="text-gray-400">{dateParse(boardInfo.createdAt)}</small>
+        <div className="flex flex-col items-end p-2 border-b bg-gray-100 rounded-t-md px-6">
+          <div className="w-full flex flex-row justify-between items-center">
+            <h2 className="text-lg font-semibold py-3">
+              <span>제목 : </span>
+              {boardInfo.title}
+            </h2>
+            <small className="text-gray-400">
+              {dateParse(boardInfo.createdAt)}
+            </small>
+          </div>
+          <div className="w-full flex justify-between items-center gap-2">
+            <p className="text-lg font-semibold py-3">
+              <span>작성자 : </span>
+              {boardInfo.users.name}
+            </p>
+            {boardInfo.users.link && (
+              <Link
+                className="text-white bg-main py-2 px-4 rounded-md"
+                to={boardInfo.users.link ?? "/board"}
+                target="_blank"
+              >
+                <span>링크 : </span>
+                {boardInfo.users.link}
+              </Link>
+            )}
+          </div>
         </div>
-
-        <p className="text-md p-4 text-left leading-normal">{boardInfo.content}</p>
+        <p className="text-md p-4 text-left leading-normal">
+          {boardInfo.content}
+        </p>
       </div>
 
       <section className="flex flex-col w-full mt-8">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-2">
           <input
             type="text"
             className="flex-auto border w-full leading-8 rounded-sm focus:outline-none focus:border-main px-2 rounded-l-md"

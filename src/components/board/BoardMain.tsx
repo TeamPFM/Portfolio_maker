@@ -1,5 +1,5 @@
 import useBoardsQuery from "@/hooks/query/boards/useBoardsQuery";
-import { SubButton } from "@/styles/ui-components/styled-button";
+import MainButton, { SubButton } from "@/styles/ui-components/styled-button";
 import Path from "@/utils/path/routes";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
