@@ -3,7 +3,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 interface INew extends usersResponse {
-  skills?: {id: number, name: string}[];
+  skills?: { id: number; name: string }[];
 }
 
 interface IProps {
@@ -13,18 +13,24 @@ interface IProps {
 const ProfileMe = ({ users }: IProps) => {
   return (
     <>
-      <div className="w-full bg-gray-800 text-white rounded-t-lg shadow-lg">
+      <section className="w-full bg-gray-800 text-white rounded-t-lg shadow-lg">
         <div className="p-5 bg-gray-800 border-solid rounded-t-lg">
-          <span className="text-xl font-semibold">{users?.name}'s Resume</span>
+          <span className="text-2xl font-semibold">{users?.name}'s Resume</span>
         </div>
+      </section>
+      <section className="bg-white text-black flex">
+        <div className="w-full flex-col relative py-8 px-8 bg-white shadow-lg rounded-lg overflow-y-auto">
         {users ? (
-          <div className="bg-white text-black flex">
+          <div className="pt-8">
             <div className="w-full flex justify-center items-center relative py-8 px-8 w-ful">
               <figure className="flex-1 profile-img flex flex-col justify-center items-center relative">
                 <div className="relative flex justify-center items-center w-[122px] h-[122px] bg-gray-300 shadow-lg rounded-full p-[1px]">
                   {users?.imagePath ? (
                     <div className="h-full w-full rounded-full overflow-hidden">
-                      <img src={`http://pfmback-env-1.eba-cmbywf2u.ap-northeast-2.elasticbeanstalk.com/img/${users?.imagePath}`} alt="" />
+                      <img
+                        src={`http://pfmback-env-1.eba-cmbywf2u.ap-northeast-2.elasticbeanstalk.com/img/${users?.imagePath}`}
+                        alt=""
+                      />
                     </div>
                   ) : (
                     <FaUserCircle className="text-[120px] text-white" />
@@ -46,13 +52,14 @@ const ProfileMe = ({ users }: IProps) => {
                     </div>
                   </div>
                   <div className="skills flex flex-wrap gap-3 pb-3">
-                    {
-                      users && (!users.skills?.length && (<div>미지정</div>))
-                    }
+                    {users && !users.skills?.length && <div>미지정</div>}
                     {users &&
-                      users.skills?.map(({id, name}) => (
-                        <div key={id} className="flex justify-center items-center px-3 py-2 rounded-md bg-main text-white cursor-pointer">
-                           <span>{name}</span>
+                      users.skills?.map(({ id, name }) => (
+                        <div
+                          key={id}
+                          className="flex justify-center items-center px-3 py-2 rounded-md bg-main text-white cursor-pointer"
+                        >
+                          <span>{name}</span>
                         </div>
                       ))}
                   </div>
@@ -75,7 +82,8 @@ const ProfileMe = ({ users }: IProps) => {
             </div>
           </div>
         )}
-      </div>
+        </div>
+      </section>
     </>
   );
 };

@@ -33,17 +33,17 @@ const ResumeMain = () => {
         <div className="flex flex-col pb-8 gap-20 w-1/2">
           {/* user's Resume */}
           <section className="relative">
-            <PlusBtn className="top-[7px]" path={MYINFO} text="내정보 관리" />
+            <PlusBtn className="top-[12px]" path={MYINFO} text="내정보 관리" />
             {userData && <ProfileMe users={userData} />}
           </section>
           {/* about_me */}
           <section className="relative">
-            <PlusBtn className="top-[7px]" path={MYINFO} text="내정보 관리" />
+            <PlusBtn className="top-[12px]" path={MYINFO} text="내정보 관리" />
             <AboutMe about={userData?.about} />
           </section>
           {/* projects */}
           <section className="relative">
-            <PlusBtn className="w-[165px] top-[7px]" path={WRITE} text="프로젝트 추가" />
+            <PlusBtn className="w-[165px] top-[12px]" path={WRITE} text="프로젝트 추가" />
             {projectsData && <ProjectInfo projects={projectsData} />}
           </section>
         </div>
