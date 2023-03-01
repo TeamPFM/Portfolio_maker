@@ -98,7 +98,7 @@ const BoardDetail = (props: { boardId: string }) => {
             <SubButton
               className="flex justify-center items-center text-md !bg-main"
               onClick={() => {
-                navigate(BOARD_UPDATE);
+                navigate(`${BOARD_UPDATE}?postId=${boardInfo.id}`);
               }}
             >
               게시글 수정
