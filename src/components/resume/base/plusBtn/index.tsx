@@ -12,7 +12,7 @@ interface IProps {
 const PlusBtn = ({ path, text, className }: IProps) => {
   const navigate = useNavigate();
 
-  const baseStyleClasses = 'add-btn w-[153px] p-2 bg-white text-black absolute top-[15px] right-[9px]';
+  const baseStyleClasses = 'add-btn w-[166px] p-2 bg-white text-black absolute top-[15px] right-[9px]';
   return (
     <div
     className={`${baseStyleClasses} ${className ?? ""}`}
