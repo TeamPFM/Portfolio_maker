@@ -81,8 +81,11 @@ const HomePage = () => {
 
         <div className="w-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:max-w-lg bg-indigo-400/25 p-5 rounded-lg">
           <h2 className="w-full text-3xl py-20 font-semibold text-gray-800 text-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-            corporis eaque ducimus.
+            <p>The ultimate tool for creating a professional portfolio.</p>
+            <p>Write, customize and showcase your work with ease.</p>
+            <p>
+              Get evaluated by experts in your field and improve your portfolio.
+            </p>
           </h2>
 
           <SubButton
