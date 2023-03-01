@@ -5,7 +5,11 @@ import API_PATH from "@/utils/path/api";
 import api from "@/libs/axios/api";
 import { useNavigate } from "react-router-dom";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-import { BoardInfoGetResponse, StatusResponse, CommentCreateRequest } from "@/models/board/detail";
+import {
+  BoardInfoGetResponse,
+  StatusResponse,
+  CommentCreateRequest,
+} from "@/models/board/detail";
 import CommentItem from "./CommentItem";
 import { UserInfoGetResponse } from "@/models/myinfo";
 import useDeleteBoardsMutation from "@/hooks/mutation/boards/useDeleteBoardsMutation";
@@ -13,7 +17,12 @@ import useDeleteBoardsMutation from "@/hooks/mutation/boards/useDeleteBoardsMuta
 const BoardDetail = (props: { boardId: string }) => {
   const navigate = useNavigate();
   const { BOARD, BOARD_UPDATE } = Path;
-  const { API_GET_USER_INFO, API_GET_BOARD, API_COMMENT_CREATE, API_DELETE_BOARD } = API_PATH;
+  const {
+    API_GET_USER_INFO,
+    API_GET_BOARD,
+    API_COMMENT_CREATE,
+    API_DELETE_BOARD,
+  } = API_PATH;
 
   const commentCreateRef = useRef<HTMLInputElement | null>(null);
   const [userId, setUserId] = useState<string | number>("");
@@ -103,7 +112,7 @@ const BoardDetail = (props: { boardId: string }) => {
                 if (boardInfo && confirm("정말로 삭제 하시겠습니까?")) {
                   mutation.mutate(boardInfo.id);
                   navigate(BOARD, { replace: true });
-                  location.reload()
+                  location.reload();
                 }
               }}
             >
@@ -116,10 +125,14 @@ const BoardDetail = (props: { boardId: string }) => {
       <div className="h-[500px] w-full bg-main-contra text-center rounded-md">
         <div className="flex flex-col items-start p-2 border-b bg-gray-100 rounded-t-md">
           <h2 className="text-lg font-semibold py-3">{boardInfo.title}</h2>
-          <small className="text-gray-400">{dateParse(boardInfo.createdAt)}</small>
+          <small className="text-gray-400">
+            {dateParse(boardInfo.createdAt)}
+          </small>
         </div>
 
-        <p className="text-md p-4 text-left leading-normal">{boardInfo.content}</p>
+        <p className="text-md p-4 text-left leading-normal whitespace-pre">
+          {boardInfo.content}
+        </p>
       </div>
 
       <section className="flex flex-col w-full mt-8">
