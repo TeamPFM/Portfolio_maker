@@ -1,3 +1,4 @@
+import { BOARD_KEY } from '@/components/constants/key';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "@/libs/axios/api";
 import BoardResponse from "@/models/boards";
@@ -21,9 +22,8 @@ const useUpdateBoardsMutation = () => {
     onError: (error) => {
       return error;
     },
-    onSuccess: (data, variables, context) => {
-      console.log({ data, variables, context });
-      queryClient.invalidateQueries<string>(["board"]);
+    onSuccess: () => {
+      queryClient.invalidateQueries<string>([BOARD_KEY]);
       window.location.replace(BOARD);
     },
   });
