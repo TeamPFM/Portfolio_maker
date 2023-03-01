@@ -123,6 +123,7 @@ const BoardDetail = (props: { boardId: string }) => {
       </div>
 
       <div className="h-[500px] w-full bg-main-contra text-center rounded-md">
+
         <div className="flex flex-col items-end p-2 border-b bg-gray-100 rounded-t-md px-6">
           <div className="w-full flex flex-row justify-between items-center">
             <h2 className="text-lg font-semibold py-3">
