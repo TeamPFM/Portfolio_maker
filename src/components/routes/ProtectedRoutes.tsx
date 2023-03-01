@@ -7,7 +7,17 @@ import ResumePage from "@/pages/resume";
 import BoardPage from "@/pages/board";
 import BoardEdit from "@/pages/boardEdit";
 const ProtectedRoutes = () => {
-  const { HOME, LOGIN, SIGNUP, WRITE, MYINFO, RESUME, BOARD, BOARD_NEW, BOARD_UPDATE } = Path;
+  const {
+    HOME,
+    LOGIN,
+    SIGNUP,
+    WRITE,
+    MYINFO,
+    RESUME,
+    BOARD,
+    BOARD_NEW,
+    BOARD_UPDATE,
+  } = Path;
 
   return (
     // 로그인 되었을떄 보이는 페이지
