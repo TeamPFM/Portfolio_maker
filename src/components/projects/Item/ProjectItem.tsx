@@ -45,8 +45,8 @@ const ProjectItem = ({ project }: IProps) => {
         ) : (
           <div className="flex-col gap-[13px]">
             <div className="w-full">
-            <div className="w-[500px] h-[330px] pl-[164px]">
-                <img className="w-full h-full object-contain" src={`http://pfmback-env-1.eba-cmbywf2u.ap-northeast-2.elasticbeanstalk.com/img/${imageName}`} alt="project-img" />
+            <div className="w-[70%] m-auto">
+                <img className="w-full h-[480px]" src={`http://pfmback-env-1.eba-cmbywf2u.ap-northeast-2.elasticbeanstalk.com/img/${imageName}`} alt="project-img" />
             </div>
             <div className="pt-12">
               <div className="py-2">
