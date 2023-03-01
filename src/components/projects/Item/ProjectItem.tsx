@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const ProjectItem = ({ project }: IProps) => {
-  const { id, name, description, link } = project;
+  const { id, name, description, link, imageName } = project;
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [updateTargetId, setUpdateTargetId] = useState<number | null>(null);
   const mutatation = useDeleteProjectMutation();
@@ -26,8 +26,7 @@ const ProjectItem = ({ project }: IProps) => {
     setUpdateTargetId((prev) => (prev = id));
   };
 
-  const projectObj = { updateTargetId, id, name, description, link };
-
+  const projectObj = { updateTargetId, id, name, description, link, imageName };
   return (
     <div key={id} className="p-item relative py-12 px-8 w-full bg-white shadow-lg rounded-lg">
       <div className="p-[1.25rem]">
@@ -44,13 +43,14 @@ const ProjectItem = ({ project }: IProps) => {
         {isEditMode && id === updateTargetId ? (
           <UpdateItem project={projectObj} setIsEditMode={setIsEditMode} />
         ) : (
-          <div className="flex-col gap-[13px] py-6">
-            <div className="w-full h-[300px] flex-1 py-2">
-                <img className="w-full h-full object-cover" src="https://winbigcoms.github.io/myPage/assets/images/ET.png" alt="" />
+          <div className="flex-col gap-[13px]">
+            <div className="w-full">
+            <div className="w-[500px] h-[330px] pl-[164px]">
+                <img className="w-full h-full object-contain" src={`http://pfmback-env-1.eba-cmbywf2u.ap-northeast-2.elasticbeanstalk.com/img/${imageName}`} alt="project-img" />
             </div>
-            <div className="w-full flex-1">
+            <div className="pt-12">
               <div className="py-2">
-                <span className="text-[22px] font-bold">{name}</span>
+                <span className="text-3xl font-bold">{name}</span>
               </div>
               <div className="py-2">
                 <div className="pb-3">
@@ -66,6 +66,7 @@ const ProjectItem = ({ project }: IProps) => {
                   <span className="text-[20px] break-words">{link}</span>
                 </Link>
               </div>
+            </div>
             </div>
           </div>
         )}

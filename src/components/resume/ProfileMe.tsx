@@ -1,5 +1,4 @@
 import usersResponse from "@/models/users";
-import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 

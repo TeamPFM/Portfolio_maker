@@ -14,6 +14,7 @@ const API_PATH = {
   API_GET_PROJECT: "/api/projects?user-id=",
   API_UPDATE_PROJECT: "/api/projects/",
   API_DELETE_PROJECT: "/api/projects/",
+  API_UPDATE_PROJECT_IMAGE: "/api/projects/img/",
 
   // Board
   API_CREATE_BOARD: "/api/boards",

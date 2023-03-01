@@ -1,4 +1,4 @@
-import ProjectResponse from "../../models/projects";
+import ProjectResponse from "@/models/projects";
 import ProjectItem from "./Item/ProjectItem";
 
 interface IProps {

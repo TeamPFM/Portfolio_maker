@@ -2,12 +2,16 @@ import { useState, useRef, FormEvent, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import useCreateTodoMutation from "@/hooks/mutation/project/useCreateProjectMutation";
 import UploadButton from "./base/uploadButton";
+import UploadImage from "@/components/projects/uploadImage";
 import Path from "@/utils/path/routes";
-import UploadImage from "../projects/uploadImage";
+import { ProjectImageResoponse } from "@/models/projects";
 
 const WriteForm = () => {
   const navigate = useNavigate();
-  const [projectImageUrl, setProjectImageUrl] = useState('');
+  const [projectImage, setProjectImage] = useState<ProjectImageResoponse>({
+    imageName: "",
+    imagePath: "",
+  });
   const projectNameRef = useRef<HTMLInputElement | null>(null);
   const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
   const projectLinkRef = useRef<HTMLInputElement | null>(null);
@@ -21,8 +25,9 @@ const WriteForm = () => {
         name: projectNameRef.current.value,
         description: projectDescRef.current.value,
         link: projectLinkRef.current.value,
+        ...projectImage
       };
-      
+
       mutatiton.mutate(newData);
       navigate(RESUME, { replace: true });
     }
@@ -71,7 +76,7 @@ const WriteForm = () => {
                   />
                 </div>
                 <div>
-                  <UploadImage setProjectImageUrl={setProjectImageUrl} />
+                  <UploadImage setProjectImage={setProjectImage} />
                 </div>
                 <div>
                   <p className={`pb-2 font-bold`}>링크</p>

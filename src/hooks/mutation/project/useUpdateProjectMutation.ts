@@ -10,7 +10,7 @@ const updateFetchProject = async ({
   id: projectId,
   ...data
 }: ProjectResponse) => {
-  const res = await api.put<ProjectResponse>(API_UPDATE_PROJECT + projectId);
+  const res = await api.put<ProjectResponse>(API_UPDATE_PROJECT + projectId, data);
   return res;
 };
 
