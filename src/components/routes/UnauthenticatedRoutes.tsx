@@ -16,6 +16,7 @@ const UnauthenticatedRoutes = () => {
       <Route path={LOGIN} element={<LoginPage />} />
       <Route path={SIGNUP} element={<SignupPage />} />
       <Route path={BOARD} element={<BoardPage />} />
+      <Route path={RESUME} element={<ResumePage />} />
       <Route path={`${BOARD}/:id`} element={<BoardPage />} />
       <Route path="*" element={<Navigate replace to={HOME} />} />
     </Routes>

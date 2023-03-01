@@ -4,7 +4,7 @@ const Path = {
   SIGNUP: "/signup",
   MYINFO: "/myinfo",
   WRITE: "/write",
-  RESUME: "/resume",
+  RESUME: "/info/resume/:id",
   BOARD: "/board",
   BOARD_NEW: "/board-new",
   BOARD_UPDATE: "/board-update",

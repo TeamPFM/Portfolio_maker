@@ -11,8 +11,17 @@ const fetcher = async () => {
   return data;
 };
 
+const fetcherUserInfo = async (id: number) => {
+  const { data } = await api.get<UsersResponse>(API_GET_USER_INFO);
+  return data;
+};
+
 const useUsersQuery = () => {
   return useQuery({ queryKey: [USER_KEY], queryFn: () => fetcher() });
+};
+
+export const useUsersInfoQuery = (id: number) => {
+  return useQuery({ queryKey: [USER_KEY], queryFn: () => fetcherUserInfo(id) });
 };
 
 export default useUsersQuery;
