@@ -61,6 +61,10 @@ const BoardDetail = (props: { boardId: string }) => {
       .catch((error) => console.log(error));
   };
 
+  const dateParse = (date: string) => {
+    return new Date(date).toLocaleString();
+  };
+
   return (
     <div className="px-5 w-full max-w-[1000px] m-auto">
       <SubButton
@@ -70,10 +74,17 @@ const BoardDetail = (props: { boardId: string }) => {
         <HiOutlineArrowLeft className="text-3xl pr-3" /> 목록으로
       </SubButton>
       {/* FIXME 게시판 타이틀/내용 */}
-      <div className="h-[500px] w-full bg-sub text-center rounded">
-        <h2>{boardInfo.title}</h2>
+      <div className="h-[500px] w-full bg-main-contra text-center rounded-md">
+        <div className="flex flex-col items-start p-2 border-b bg-gray-100 rounded-t-md">
+          <h2 className="text-lg font-semibold py-3">{boardInfo.title}</h2>
+          <small className="text-gray-400">
+            {dateParse(boardInfo.createdAt)}
+          </small>
+        </div>
 
-        <p>{boardInfo.content}</p>
+        <p className="text-md p-4 text-left leading-normal">
+          {boardInfo.content}
+        </p>
       </div>
 
       <section className="flex flex-col w-full mt-8">
