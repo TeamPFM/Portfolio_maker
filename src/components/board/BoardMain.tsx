@@ -9,7 +9,7 @@ const BoardMain = () => {
 
   const { BOARD_NEW, BOARD } = Path;
 
-  const [curNum, setCurNum] = useState<number>(1);
+  const [curNum, setCurNum] = useState<number>(0);
   const { data: boards } = useBoardsQuery(curNum);
 
   return (
@@ -72,27 +72,48 @@ const BoardMain = () => {
         <div className="items-center">
           <SubButton
             className="!px-4 hover:text-primary"
-            onClick={() => setCurNum(1)}
+            onClick={() => {
+              setCurNum(0);
+              boards ? "" : alert("해당하는 게시물이 없습니다1");
+            }}
           >
             1
           </SubButton>
           <SubButton
             className="!px-4 hover:text-primary"
-            onClick={() => setCurNum(2)}
+            onClick={() => {
+              setCurNum(1);
+              boards ? "" : alert("해당하는 게시물이 없습니다2");
+            }}
           >
             2
           </SubButton>
           <SubButton
             className="!px-4 hover:text-primary"
-            onClick={() => setCurNum(2)}
+            onClick={() => {
+              setCurNum(2);
+              boards ? "" : alert("해당하는 게시물이 없습니다3");
+            }}
           >
             3
           </SubButton>
           <SubButton
             className="!px-4 hover:text-primary"
-            onClick={() => setCurNum(1)}
+            onClick={() => {
+              setCurNum(3);
+              boards ? "" : alert("해당하는 게시물이 없습니다4");
+            }}
           >
-            ...
+            4
+          </SubButton>
+          <SubButton
+            className="!px-4 hover:text-primary"
+            onClick={() => {
+              setCurNum(4);
+              boards ? "" : alert("해당하는 게시물이 없습니다5");
+            }}
+          >
+            5
           </SubButton>
         </div>
       </div>

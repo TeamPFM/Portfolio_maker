@@ -17,7 +17,7 @@ const useBoardsQuery = (page: number) => {
   return useQuery({
     queryKey: [BOARDS_KEY, page],
     queryFn: () => fetcher(page),
-    enabled: !!page,
+    // enabled: !!page,
   });
 };
 
