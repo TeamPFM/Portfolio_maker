@@ -13,7 +13,6 @@ export interface UserInfoGetResponse {
   imagePath: string;
   link: string;
   name: string;
-  password: string;
   phone: string;
   updatedAt: string;
 }

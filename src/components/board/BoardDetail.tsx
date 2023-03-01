@@ -15,8 +15,13 @@ import { UserInfoGetResponse } from "@/models/myinfo";
 
 const BoardDetail = (props: { boardId: string }) => {
   const navigate = useNavigate();
-  const { BOARD } = Path;
-  const { API_GET_USER_INFO, API_GET_BOARD, API_COMMENT_CREATE } = API_PATH;
+  const { BOARD, BOARD_UPDATE } = Path;
+  const {
+    API_GET_USER_INFO,
+    API_GET_BOARD,
+    API_COMMENT_CREATE,
+    API_DELETE_BOARD,
+  } = API_PATH;
 
   const commentCreateRef = useRef<HTMLInputElement | null>(null);
   const [userId, setUserId] = useState<string | number>("");
@@ -37,6 +42,19 @@ const BoardDetail = (props: { boardId: string }) => {
         deletedAt: "",
       },
     ],
+    users: {
+      id: 0,
+      about: "",
+      createdAt: "",
+      deletedAt: "",
+      email: "",
+      imageName: "",
+      imagePath: "",
+      link: "",
+      name: "",
+      phone: "",
+      updatedAt: "",
+    },
   });
 
   useEffect(() => {
@@ -67,13 +85,46 @@ const BoardDetail = (props: { boardId: string }) => {
 
   return (
     <div className="px-5 w-full max-w-[1000px] m-auto">
-      <SubButton
-        className="flex items-center font-semibold text-white border-none mb-5"
-        onClick={() => navigate(BOARD, { replace: true })}
-      >
-        <HiOutlineArrowLeft className="text-3xl pr-3" /> 목록으로
-      </SubButton>
-      {/* FIXME 게시판 타이틀/내용 */}
+      <div className="flex justify-between items-center">
+        <SubButton
+          className="flex items-center font-semibold text-white border-none mb-5"
+          onClick={() => navigate(BOARD, { replace: true })}
+        >
+          <HiOutlineArrowLeft className="text-3xl pr-3" /> 목록으로
+        </SubButton>
+
+        {userId === boardInfo.users.id && (
+          <div className="flex items-center">
+            <SubButton
+              className="flex justify-center items-center text-md !bg-main"
+              onClick={() => {
+                navigate(BOARD_UPDATE);
+              }}
+            >
+              게시글 수정
+            </SubButton>
+            <SubButton
+              className="flex justify-center items-center text-md !bg-red-400 ml-4"
+              onClick={() => {
+                if (confirm("정말로 삭제 하시겠습니까?")) {
+                  api
+                    .delete<StatusResponse>(
+                      `${API_DELETE_BOARD}/${boardInfo.id}`
+                    )
+                    .then((res) => {
+                      alert("삭제되었습니다.");
+                      navigate(BOARD, { replace: true });
+                    })
+                    .catch((error) => console.log(error));
+                }
+              }}
+            >
+              게시글 삭제
+            </SubButton>
+          </div>
+        )}
+      </div>
+
       <div className="h-[500px] w-full bg-main-contra text-center rounded-md">
         <div className="flex flex-col items-start p-2 border-b bg-gray-100 rounded-t-md">
           <h2 className="text-lg font-semibold py-3">{boardInfo.title}</h2>
