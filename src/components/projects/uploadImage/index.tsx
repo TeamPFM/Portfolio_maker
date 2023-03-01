@@ -1,27 +1,50 @@
+import {
+  FunctionComponent,
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useRef,
+  useState,
+  useEffect,
+} from "react";
+import { ProjectImageResoponse } from "@/models/projects";
 import MainButton from "@/styles/ui-components/styled-button";
-import { ChangeEvent, useRef, useState } from "react";
+import api from "@/libs/axios/api";
+import API_PATH from "@/utils/path/api";
 import { BiImageAdd } from "react-icons/bi";
 
-// interface IProps  {
-//   setProjectImageUrl: 
-// }
-const UploadImage = (setProjectImageUrl: any) => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [projectImage, setProjectImage] = useState("");
+interface IProps {
+  setProjectImage: Dispatch<SetStateAction<ProjectImageResoponse>>;
+  projectImgName?: string;
+}
 
-  const onChangeImg = (e: ChangeEvent<HTMLInputElement>) => {
+const UploadImage: FunctionComponent<IProps> = (props) => {
+  const { setProjectImage, projectImgName } = props;
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [imageUrl, setImageUrl] = useState("");
+
+  const { API_UPDATE_PROJECT_IMAGE } = API_PATH;
+
+  const onChangeImg = async (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
     const file = (target.files as FileList)[0];
 
     if (!file) {
       return;
     }
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.addEventListener("loadend", (e: ProgressEvent<FileReader>) => {
-      console.log(e.target?.result);
-      setProjectImage(e.target?.result as string);
+    const formData = new FormData();
+    formData.append("img", file);
+
+    const { data } = await api.post<ProjectImageResoponse>(API_UPDATE_PROJECT_IMAGE, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
+
+    if (data) {
+      setImageUrl(data.imageName);
+      setProjectImage(data);
+    }
   };
 
   const onClickFileInput = () => {
@@ -53,30 +76,36 @@ const UploadImage = (setProjectImageUrl: any) => {
         <input
           className="absolute top-0 left-0 hidden"
           type="file"
-          accept=".jpg, .jpeg, .png"
+          accept=".jpg, .jpeg, .png , .gif"
           ref={fileInputRef}
           onChange={onChangeImg}
         />
       </div>
       <div className="relative flex justify-center items-cente py-5 px-4">
-        {projectImage && (
+        {Image && (
           <>
             <div className="absolute top-4 right-0">
               <MainButton
                 type="button"
                 onClick={() => {
-                  setProjectImage("");
+                  setImageUrl("");
                   return;
                 }}
               >
                 이미지 취소
               </MainButton>
             </div>
-            <div className="img-preview pt-8">
-              <div className="w-[150px]">
-              <img src={projectImage} alt="project-img" />
+            {imageUrl && (
+              <div className="img-preview pt-8">
+                <div className="pt-8 w-[500px] h-[500px]">
+                  <img
+                    className="object-contain w-full h-full"
+                    src={`http://pfmback-env-1.eba-cmbywf2u.ap-northeast-2.elasticbeanstalk.com/img/${imageUrl}`}
+                    alt="project-img"
+                  />
+                </div>
               </div>
-            </div>
+            )}
           </>
         )}
       </div>

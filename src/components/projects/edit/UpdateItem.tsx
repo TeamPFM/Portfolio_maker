@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useRef, MouseEvent, FormEvent } from "react";
-import UploadButton from "@/components/projectWrite/base/uploadButton";
 import useUpdateProjectMutation from "@/hooks/mutation/project/useUpdateProjectMutation";
-import ProjectResponse from "@/models/projects";
-import UploadImage from "../uploadImage";
-
+import UploadButton from "@/components/projectWrite/base/uploadButton";
+import UploadImage from "@/components/projects/uploadImage";
+import ProjectResponse, { ProjectImageResoponse } from "@/models/projects";
 interface IProps {
   project: ProjectResponse;
   setIsEditMode: (isEditMode: boolean) => void;
 }
 
 const UpdateItem = ({ setIsEditMode, project }: IProps) => {
-  const [projectImageUrl, setProjectImageUrl] = useState();
-  const { id, name, description, link } = project;
+  
+  const [projectImage, setProjectImage] = useState<ProjectImageResoponse>({
+    imageName: "",
+    imagePath: "",
+  });
+  const { id, name, description, link, imageName } = project;
   const projectNameRef = useRef<HTMLInputElement | null>(null);
   const projectDescRef = useRef<HTMLTextAreaElement | null>(null);
   const projectLinkRef = useRef<HTMLInputElement | null>(null);
@@ -33,6 +36,7 @@ const UpdateItem = ({ setIsEditMode, project }: IProps) => {
         name: projectNameRef.current.value,
         description: projectDescRef.current.value,
         link: projectLinkRef.current.value,
+        ...projectImage,
       };
       mutation.mutate({ id, ...updateData });
       setTimeout(() => {
@@ -68,7 +72,7 @@ const UpdateItem = ({ setIsEditMode, project }: IProps) => {
       </div>
       <div className="py-2">
         <div className="w-[95%]">
-          <UploadImage setProjectImageUrl={setProjectImageUrl} />
+          <UploadImage projectImgName={imageName} setProjectImage={setProjectImage} />
         </div>
       </div>
       <div className="py-2">

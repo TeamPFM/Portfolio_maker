@@ -1,6 +1,7 @@
 import { PROJECT_KEY } from "@/components/constants/key";
 import api from "@/libs/axios/api";
 import ProjectResponse from "@/models/projects";
+import API_PATH from "@/utils/path/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface IProps {
@@ -10,8 +11,9 @@ interface IProps {
 }
 
 const postFetchProject = async (newData: IProps) => {
-  const res = api.post<ProjectResponse[]>("/api/projects", newData);
-  console.log(res);
+  const { API_CREATE_PROJECT } = API_PATH;
+
+  const res = api.post<ProjectResponse[]>(API_CREATE_PROJECT, newData);
   return res;
 };
 
