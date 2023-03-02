@@ -1,4 +1,4 @@
-# Project : Portfolio Maker
+## Project : Portfolio Maker
 ### 📆 22.02 ~ 22.03
 
 <br>  
@@ -32,7 +32,7 @@ Board Page 2
 
 ---
 
-# 서비스 소개
+## 서비스 소개
 
 취업을 준비하면서 자신의 이력서를 객관적으로 판단하기 힘들다는 생각을 많이 했습니다.
 
@@ -42,7 +42,7 @@ Board Page 2
 
 ---
 
-# 팀원 소개
+## 팀원 소개
 
 [Team Notion Page](https://worried-parrotfish-2f5.notion.site/PortFolio-Maker-b86ebb8ca6b64e8ebf665a12757d163f)
 
@@ -73,7 +73,7 @@ Froentend(React.js) - [Froentend Github](https://github.com/TeamPFM/Portfolio_ma
 
 ---
 
-# Git Branching
+## Git Branching
 
 Git Flow 전략을 적극적으로 활용하여 효율적으로 협업하였습니다.
 
@@ -97,52 +97,26 @@ Git Flow 전략을 적극적으로 활용하여 효율적으로 협업하였습�
 
 ---
 
-# Architecture
+## Architecture
 
 ![image](https://user-images.githubusercontent.com/98637739/222233439-1f6401dc-c393-4693-afca-22e655cd3e95.png)
 
-Git Action을 이용해 CI/CD 파이프라인을 구축하였습니다.
-
-Docker를 이용해 Server와 DB를 컨테이너화 하여 EC2 서비스에 업로드 했습니다.
-
-RDS를 이용해 Server의 예상치 못한 종료에 대비해 DB 클라우드화를 했습니다.
-
-Winston과 Daily Logger를 이용해 Log 파일을 관리하도록 했습니다.
-
-Grafana와 CloudWatch를 이용해 인프라 모니터링 체계를 구축 했습니다 (비용문제로 현재는 삭제)
 
 ---
+## 담당 역할
+|담당자| 구현 내용|
+|------|------|
+|이동현|이력서 페이지 구현, 게시판 작성, 수정 페이지 및 삭제 구현|
+|노기훈|문서 정리, 인증(로그인, 회원가입, 로그아웃), 게시판 목록 페이지 (페이징 처리)|
+|권순성|내정보 페이지, 게시판 상세 페이지 및 댓글 구현|
 
-# 사용 기술
-
-## Backend: Nest.js (9.0.0)
-
-- Database: MySql (3.1.2)
-
-- DB Validation: Joi (17.7.1)
-
-- ORM: TypeORM (0.3.12)
-
-- Login: Json Web Token (passport-jwt 3.0.8)
-
-- Encrypt: Bcrypt (5.1.0)
-
-- Logger: Winston logger (3.8.2)
-
-- Security: Helmet (6.0.1)
-
-## Frontend: React.js (18.0.0)
-
+## 사용 기술
  - Typescript (4.6.3)
- 
+ - React.js (18.0.0)
  - React Router (6.8.1)
- 
  - Axios (1.3.3)
- 
  - Tailwindcss (3.2.6)
- 
  - React Query (4.24.10)
- 
  - Zustand (3.7.2)
- 
  - framer-motion (9.0.3)
+
