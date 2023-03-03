@@ -5,6 +5,10 @@
 
 ## Demo Image  
 
+Front Page
+
+<img width="946" alt="image" src="https://user-images.githubusercontent.com/98637739/222773602-f156c90d-013c-4e11-b8b5-9ed49d972409.gif">
+
 Signup Page 
 
 <img width="946" alt="image" src="https://user-images.githubusercontent.com/58792751/222392565-a0c2ba81-5f23-4f5b-9cd3-84a45049c0a5.png">
@@ -103,7 +107,7 @@ Git Flow 전략을 적극적으로 활용하여 효율적으로 협업하였습�
 
 Git Action을 이용해 CI/CD 파이프라인을 구축하였습니다.
 
-Docker를 이용해 Server와 DB를 컨테이너화 하여 EC2 서비스에 업로드 했습니다.
+Docker를 이용해 Server와 DB를 컨테이너화 하여 EBS 서비스에 업로드 했습니다.
 
 RDS를 이용해 Server의 예상치 못한 종료에 대비해 DB 클라우드화를 했습니다.
 
