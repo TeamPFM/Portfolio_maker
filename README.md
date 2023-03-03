@@ -99,8 +99,17 @@ Git Flow 전략을 적극적으로 활용하여 효율적으로 협업하였습�
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/98637739/222233439-1f6401dc-c393-4693-afca-22e655cd3e95.png)
+<img width="578" alt="pfm-server" src="https://user-images.githubusercontent.com/98637739/222733197-0f0deda0-5550-46bf-a029-cf05e7a49dda.png">
 
+Git Action을 이용해 CI/CD 파이프라인을 구축하였습니다.
+
+Docker를 이용해 Server와 DB를 컨테이너화 하여 EC2 서비스에 업로드 했습니다.
+
+RDS를 이용해 Server의 예상치 못한 종료에 대비해 DB 클라우드화를 했습니다.
+
+Winston과 Daily Logger를 이용해 Log 파일을 관리하도록 했습니다.
+
+Grafana와 CloudWatch를 이용해 인프라 모니터링 체계를 구축 했습니다 (비용문제로 현재는 삭제)
 
 ---
 ## 담당 역할
